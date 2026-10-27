@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://erp-bayern.de/sitemap.xml
