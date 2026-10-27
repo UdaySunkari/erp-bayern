@@ -1,9 +1,9 @@
 /* ── self-hosted fonts (assets/fonts) — no external requests ── */
-@font-face{font-family:"Bricolage Grotesque";src:url("assets/fonts/bricolage-latin-var.woff2") format("woff2-variations");font-weight:200 800;font-stretch:75% 100%;font-display:swap;font-style:normal}
-@font-face{font-family:Manrope;src:url("assets/fonts/manrope-400.woff2") format("woff2");font-weight:400;font-display:swap;font-style:normal}
-@font-face{font-family:Manrope;src:url("assets/fonts/manrope-500.woff2") format("woff2");font-weight:500;font-display:swap;font-style:normal}
-@font-face{font-family:Manrope;src:url("assets/fonts/manrope-600.woff2") format("woff2");font-weight:600;font-display:swap;font-style:normal}
-@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-400.woff2") format("woff2");font-weight:400;font-display:swap;font-style:normal}
+@font-face{font-family:"Bricolage Grotesque";src:url("../fonts/bricolage-latin-var.woff2") format("woff2-variations");font-weight:200 800;font-stretch:75% 100%;font-display:swap;font-style:normal}
+@font-face{font-family:Manrope;src:url("../fonts/manrope-400.woff2") format("woff2");font-weight:400;font-display:swap;font-style:normal}
+@font-face{font-family:Manrope;src:url("../fonts/manrope-500.woff2") format("woff2");font-weight:500;font-display:swap;font-style:normal}
+@font-face{font-family:Manrope;src:url("../fonts/manrope-600.woff2") format("woff2");font-weight:600;font-display:swap;font-style:normal}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/jetbrains-400.woff2") format("woff2");font-weight:400;font-display:swap;font-style:normal}
 
 /* ── tokens ─────────────────────────────────────────── */
 :root{
