@@ -1,0 +1,2297 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turbo Solutions – Unternehmenssoftware, die zu Ihren Abläufen passt</title>
+<meta name="description" content="Wir entwickeln, passen an und betreuen Unternehmenssoftware. Odoo ist eine unserer Kernplattformen – Odoo 17, 18 und 19. Amberg, Bayern.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="canonical" href="https://erp-bayern.de/">
+<link rel="alternate" hreflang="de" href="https://erp-bayern.de/">
+<link rel="alternate" hreflang="en" href="https://erp-bayern.de/en/">
+<link rel="alternate" hreflang="x-default" href="https://erp-bayern.de/">
+<meta property="og:title" content="Turbo Solutions – Unternehmenssoftware, die zu Ihren Abläufen passt">
+<meta property="og:description" content="Wir entwickeln, passen an und betreuen Unternehmenssoftware. Odoo ist eine unserer Kernplattformen – Odoo 17, 18 und 19. Amberg, Bayern.">
+<meta property="og:image" content="https://erp-bayern.de/assets/img/planner.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="777">
+<meta property="og:image:alt" content="Wochenraster der Schichtplanung in Odoo">
+<meta property="og:url" content="https://erp-bayern.de/">
+<meta property="og:site_name" content="Turbo Solutions">
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/icon-shift.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/bricolage-latin-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-400.woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://erp-bayern.de/#org", "name": "Turbo Solutions", "description": "Wir entwickeln, passen an und betreuen Unternehmenssoftware. Odoo ist eine unserer Kernplattformen — Odoo 17, 18 und 19. Amberg, Bayern.", "url": "https://erp-bayern.de/", "email": "kontakt@erp-bayern.de", "telephone": "+4915226389297", "areaServed": {"@type": "Country", "name": "Deutschland"}, "availableLanguage": ["de", "en"], "address": {"@type": "PostalAddress", "addressLocality": "Amberg", "addressRegion": "Bayern", "addressCountry": "DE"}, "knowsAbout": ["Odoo", "ERP", "Odoo 17", "Odoo 18", "Odoo 19", "Python", "OWL", "QWeb", "ERP-Migration"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Shift Planning Turbo", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 17, 18, 19", "url": "https://apps.odoo.com/apps/modules/19.0/dienstplan_lager", "offers": {"@type": "Offer", "price": "99", "priceCurrency": "EUR"}, "publisher": {"@id": "https://erp-bayern.de/#org"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Pallet Packing List & Customs Documents", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 17, 18, 19", "url": "https://apps.odoo.com/apps/modules/19.0/stock_pallet_turbo", "offers": {"@type": "Offer", "price": "79", "priceCurrency": "EUR"}, "publisher": {"@id": "https://erp-bayern.de/#org"}}</script>
+<style>
+/* ── Self-hosted fonts: no external requests ─────────────────────────── */
+@font-face{font-family:"Bricolage Grotesque";src:url("assets/fonts/bricolage-latin-var.woff2") format("woff2-variations"),url("assets/fonts/bricolage-latin-var.woff2") format("woff2");font-weight:200 800;font-stretch:75% 100%;font-display:swap}
+@font-face{font-family:Manrope;src:url("assets/fonts/manrope-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Manrope;src:url("assets/fonts/manrope-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Manrope;src:url("assets/fonts/manrope-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/jetbrains-400.woff2") format("woff2");font-weight:400;font-display:swap}
+
+/* ── Tokens ───────────────────────────────────────────────────────────── */
+:root{
+  color-scheme:dark;
+  --bg:#000;
+  --card:#08080a;
+  --card-2:#0e0e11;
+  --card-3:#151519;
+  --line:rgb(255 255 255/.08);
+  --line-2:rgb(255 255 255/.13);
+  --line-soft:rgb(255 255 255/.05);
+  --fg:#f5f5f7;
+  --fg-2:#babac3;
+  --muted:#86868f;
+  --blue:#3d8bff;
+  --blue-lt:#8cbcff;
+  --indigo:#8a7dff;
+  --amber:#f5b544;
+  --green:#4ade80;
+  --early:#8ec3ff; --late:#4f8ff7; --night:#8f86ff;
+  --display:"Bricolage Grotesque",Manrope,ui-sans-serif,system-ui,sans-serif;
+  --body:Manrope,ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+  --ease:cubic-bezier(.22,.8,.3,1);
+  --surf:linear-gradient(180deg,rgb(255 255 255/.045),rgb(255 255 255/.012));
+  --surf-edge:inset 0 1px 0 rgb(255 255 255/.08);
+  --surf-sh:0 1px 2px rgb(0 0 0/.8),0 30px 60px -30px rgb(0 0 0/1);
+  --glass:linear-gradient(180deg,rgb(255 255 255/.05),rgb(255 255 255/.018) 50%,rgb(255 255 255/.008));
+  --glass-tint:rgb(6 6 9/.5);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:6rem;background:var(--bg);scrollbar-color:#26262c var(--bg)}
+body{margin:0;color:var(--fg);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#sky{position:fixed;left:0;top:0;z-index:-1;display:block;width:100%;height:100vh;height:100lvh;pointer-events:none}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-weight:inherit;font-size:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--blue-lt);outline-offset:3px;border-radius:.375rem}
+::selection{background:rgb(61 139 255/.38);color:#fff}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:300;padding:.6rem 1rem;border-radius:.6rem;background:var(--fg);color:#000;font-weight:600;text-decoration:none}
+.skip:focus{top:1rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.shell{width:100%;max-width:72rem;margin-inline:auto;padding-inline:1.25rem}
+@media(min-width:768px){.shell{padding-inline:2rem}}
+.ti{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.code{font-family:var(--mono);font-size:.82em;letter-spacing:-.01em;color:var(--fg-2)}
+
+/* Icon tiles */
+.itile{display:grid;place-items:center;flex:none;width:2.25rem;height:2.25rem;border-radius:.7rem;background:linear-gradient(180deg,rgb(255 255 255/.08),rgb(255 255 255/.02));box-shadow:inset 0 1px 0 rgb(255 255 255/.09),inset 0 0 0 1px rgb(255 255 255/.07);color:var(--fg-2);transition:color .3s,background .3s,box-shadow .3s}
+.itile .ti{width:1.15rem;height:1.15rem}
+.itile.blue{color:var(--blue-lt);background:rgb(61 139 255/.08);box-shadow:inset 0 0 0 1px rgb(61 139 255/.22)}
+
+/* ── Type ─────────────────────────────────────────────────────────────── */
+.display{font-family:var(--display);font-weight:670;font-stretch:90%;line-height:.98;letter-spacing:-.034em;text-wrap:balance;hyphens:manual}
+.h2{font-family:var(--display);font-weight:640;font-stretch:91%;font-size:clamp(2rem,3.7vw,3rem);line-height:1.04;letter-spacing:-.028em;text-wrap:balance}
+.h3{font-family:var(--display);font-weight:620;font-stretch:92%;font-size:1.5rem;line-height:1.15;letter-spacing:-.02em}
+.sheen{background:linear-gradient(180deg,#fff 45%,rgb(255 255 255/.72));-webkit-background-clip:text;background-clip:text;color:transparent}
+.topic{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;padding:.32rem .8rem .32rem .6rem;border-radius:999px;background:rgb(255 255 255/.03);box-shadow:inset 0 0 0 1px var(--line-2);font-size:.8125rem;font-weight:600;color:var(--fg-2)}
+.topic .ti{width:.95rem;height:.95rem;color:var(--blue-lt)}
+.lede{max-width:36rem;font-size:clamp(1.0625rem,1.6vw,1.1875rem);line-height:1.6;color:var(--fg-2);text-wrap:pretty}
+.prose p{max-width:36rem;color:var(--fg-2);text-wrap:pretty}
+.prose p+p{margin-top:1rem}
+.note{font-size:.9375rem;color:var(--muted);text-wrap:pretty}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.btn{--h:2.875rem;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:var(--h);padding:0 1.4rem;border:0;border-radius:999px;font-size:.9375rem;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .2s var(--ease),filter .2s,background-color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:none}
+.btn .ti{width:1.05rem;height:1.05rem;transition:transform .2s var(--ease)}
+.btn:hover .go{transform:translateX(2px)}
+.btn:hover .up{transform:translate(2px,-2px)}
+.btn-solid{color:#09090b;background:linear-gradient(180deg,#fff,#dfe3e9);box-shadow:inset 0 1px 0 #fff,0 1px 2px rgb(0 0 0/.6),0 0 0 1px rgb(255 255 255/.12),0 10px 26px -16px rgb(255 255 255/.2)}
+.btn-solid:hover{filter:brightness(1.05)}
+.btn-glass{color:var(--fg);background:rgb(255 255 255/.05);box-shadow:inset 0 1px 0 rgb(255 255 255/.1),inset 0 0 0 1px rgb(255 255 255/.09),0 1px 2px rgb(0 0 0/.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.btn-glass:hover{background:rgb(255 255 255/.09)}
+.btn-sm{--h:2.25rem;padding:0 1rem;font-size:.875rem}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+.hd{position:fixed;inset-inline:0;top:.75rem;z-index:60;padding-inline:.75rem}
+@media(min-width:640px){.hd{top:1.1rem}}
+.nav{display:flex;align-items:center;gap:.5rem;max-width:68rem;height:3.75rem;margin-inline:auto;padding:0 .55rem 0 .9rem;border:1px solid rgb(255 255 255/.08);border-radius:1.1rem;background:rgb(12 12 14/.55);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:inset 0 1px 0 rgb(255 255 255/.05);transition:max-width .5s cubic-bezier(.4,0,.2,1),height .5s cubic-bezier(.4,0,.2,1),background-color .3s,border-color .3s,box-shadow .3s}
+.hd.is-scrolled .nav{background:rgb(10 10 12/.82);border-color:rgb(255 255 255/.11);box-shadow:0 20px 50px -24px #000,inset 0 1px 0 rgb(255 255 255/.06)}
+.brand{display:flex;align-items:center;gap:.6rem;font-size:.9375rem;font-weight:600;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.brand img{width:1.65rem;height:1.65rem;border-radius:.45rem;box-shadow:0 0 0 1px rgb(255 255 255/.1)}
+.nav-links{display:none;gap:.15rem;margin-inline:auto}
+.nav-links a{padding:.45rem .8rem;border-radius:.6rem;font-size:.875rem;font-weight:500;color:var(--fg-2);text-decoration:none;transition:background-color .18s,color .18s}
+.nav-links a:hover{background:rgb(255 255 255/.06);color:var(--fg)}
+.lang{display:none;gap:.1rem;padding:.2rem;border-radius:.65rem;background:rgb(255 255 255/.04);box-shadow:inset 0 0 0 1px rgb(255 255 255/.06)}
+.lang a{padding:.2rem .45rem;border-radius:.45rem;font-size:.75rem;font-weight:600;color:var(--muted);text-decoration:none}
+.lang a[aria-current="true"]{background:rgb(255 255 255/.1);color:var(--fg)}
+.nav-cta{display:none}
+.burger{display:grid;place-items:center;width:2.5rem;height:2.5rem;margin-left:auto;border:0;border-radius:.7rem;background:transparent;cursor:pointer}
+.burger:hover{background:rgb(255 255 255/.06)}
+.burger .ti{width:1.3rem;height:1.3rem}
+@media(min-width:900px){
+  .nav-links,.lang{display:flex}
+  .nav-cta{display:inline-flex}
+  .burger{display:none}
+  .hd.is-scrolled .nav{max-width:58rem;height:3.25rem}
+}
+.menu{max-width:68rem;margin:.5rem auto 0;padding:.5rem;border:1px solid rgb(255 255 255/.1);border-radius:1.1rem;background:rgb(10 10 12/.95);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 30px 60px -30px #000}
+.menu-link{display:flex;align-items:center;gap:.75rem;padding:.7rem .8rem;border-radius:.7rem;font-weight:500;text-decoration:none}
+.menu-link .ti{width:1.15rem;height:1.15rem;color:var(--muted)}
+.menu-link:hover{background:rgb(255 255 255/.06)}
+.menu-foot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-top:.35rem;padding:.55rem .4rem .25rem;border-top:1px solid var(--line)}
+.menu-foot .lang{display:flex}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero{position:relative;isolation:isolate;padding-top:clamp(8rem,15vw,11.5rem);text-align:center}
+.hero-bg{position:absolute;inset:0 0 auto;height:62rem;z-index:-1;overflow:hidden;pointer-events:none}
+.hero-bg .beam{position:absolute;left:50%;top:-6rem;width:80rem;height:52rem;transform:translateX(-50%);background:conic-gradient(at 50% 0%,transparent 152deg,rgb(61 139 255/.13) 168deg,rgb(138 125 255/.22) 180deg,rgb(61 139 255/.13) 192deg,transparent 208deg);filter:blur(28px);-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 90%);mask-image:linear-gradient(180deg,#000 30%,transparent 90%)}
+.hero-bg .halo{position:absolute;left:50%;top:-14rem;width:58rem;height:28rem;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgb(61 139 255/.28),rgb(138 125 255/.1) 55%,transparent);filter:blur(10px)}
+.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.25rem .3rem .25rem .25rem;border-radius:999px;font-size:.875rem;color:var(--fg-2);text-decoration:none}
+.pill-tag{padding:.15rem .6rem;border-radius:999px;background:linear-gradient(90deg,#3d8bff,#8a7dff);color:#fff;font-size:.75rem;font-weight:600;line-height:1.35;box-shadow:0 0 18px -4px rgb(108 125 255/.8)}
+.pill-go{display:grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:999px;background:rgb(255 255 255/.08);transition:transform .2s var(--ease)}
+.pill:hover .pill-go{transform:translateX(2px)}
+.pill-go .ti{width:.85rem;height:.85rem}
+.hero h1{max-width:13.5em;margin:1.6rem auto 0;font-size:clamp(2.2rem,7.6vw,5.6rem)}
+.hero .lede{margin:1.6rem auto 0;max-width:38rem}
+.hero .note{max-width:38rem;margin:.75rem auto 0;font-size:.9375rem}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:2.1rem}
+@media(max-width:479px){.cta .btn{flex:1 1 100%}}
+.rise{animation:rise 1s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(16px);filter:blur(6px)}}
+
+/* ── Planner stage ────────────────────────────────────────────────────── */
+.stage{position:relative;margin-top:clamp(3.5rem,7vw,5.5rem);perspective:1800px;text-align:left}
+.stage-glow{position:absolute;left:50%;top:-5rem;width:72%;height:12rem;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgb(61 139 255/.32),rgb(138 125 255/.14) 60%,transparent);filter:blur(40px);pointer-events:none}
+.frame{position:relative;overflow:hidden;border:1px solid rgb(255 255 255/.1);border-radius:1.35rem;background:#060608;background-image:linear-gradient(180deg,rgb(255 255 255/.035),rgb(255 255 255/0) 40%);box-shadow:inset 0 1px 0 rgb(255 255 255/.07),0 0 0 1px rgb(0 0 0/.8),0 50px 140px -30px rgb(61 139 255/.22),0 70px 120px -40px #000;transform-origin:50% 0;transform:rotateX(var(--tilt,0deg)) scale(var(--sc,1));will-change:transform}
+.frame.flat{transform:none;will-change:auto}
+.frame-edge{position:absolute;inset-inline:10%;top:0;z-index:3;height:1px;background:linear-gradient(90deg,transparent,rgb(140 188 255/.9) 40%,rgb(170 160 255/.9) 60%,transparent);pointer-events:none}
+.frame-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#26262c transparent}
+.mock{min-width:56rem;font-size:.8125rem;line-height:1.4}
+.mock noscript img{width:100%}
+.mk-bar{display:flex;align-items:center;gap:.9rem;padding:.7rem 1rem;border-bottom:1px solid var(--line)}
+.mk-app{display:flex;align-items:center;gap:.55rem;font-weight:600}
+.mk-app img{width:1.375rem;height:1.375rem;border-radius:.4rem}
+.mk-week{display:flex;align-items:center;gap:.35rem;color:var(--muted)}
+.mk-week .nav-arr{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:.45rem;box-shadow:inset 0 0 0 1px var(--line)}
+.mk-week .nav-arr .ti{width:.9rem;height:.9rem}
+.mk-kw{padding:.12rem .45rem;border-radius:.4rem;background:rgb(61 139 255/.16);color:var(--blue-lt);font-size:.75rem;font-weight:600}
+.mk-search{display:flex;align-items:center;gap:.5rem;margin-left:auto;padding:.32rem .5rem .32rem .6rem;border-radius:.55rem;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted);font-size:.75rem}
+.mk-search .ti{width:.9rem;height:.9rem}
+.mk-search kbd{margin-left:1.25rem;padding:.05rem .35rem;border-radius:.3rem;box-shadow:inset 0 0 0 1px var(--line);font:500 .625rem/1.4 var(--body)}
+.mk-seg{display:flex;padding:.2rem;border-radius:.6rem;background:rgb(255 255 255/.04);box-shadow:inset 0 0 0 1px var(--line)}
+.mk-seg span{padding:.2rem .65rem;border-radius:.45rem;color:var(--muted);font-size:.75rem;font-weight:600}
+.mk-seg .on{background:rgb(255 255 255/.09);color:var(--fg)}
+.mk-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;padding:.9rem 1rem}
+.kpi{position:relative;display:flex;gap:.8rem;padding:.8rem .9rem .85rem;border:1px solid var(--line);border-radius:.85rem;background:rgb(255 255 255/.02);text-align:left}
+.kpi .itile{width:2rem;height:2rem;border-radius:.6rem}
+.kpi .itile .ti{width:1rem;height:1rem}
+.kpi-b{flex:1;min-width:0}
+.kpi-l{display:block;font-size:.75rem;font-weight:500;color:var(--muted)}
+.kpi-v{display:flex;align-items:baseline;gap:.45rem;margin-top:.1rem;font-family:var(--display);font-size:1.6rem;font-weight:640;line-height:1.15;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi-v small{font-family:var(--body);font-size:.8125rem;font-weight:500;letter-spacing:0;color:var(--muted)}
+.kpi-bar{display:block;height:3px;margin-top:.55rem;overflow:hidden;border-radius:3px;background:rgb(255 255 255/.07)}
+.kpi-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--indigo));transition:width .5s var(--ease)}
+button.kpi{cursor:pointer;transition:border-color .25s,background-color .25s}
+.kpi-conf{border-color:rgb(245 181 68/.42);background:rgb(245 181 68/.05)}
+.kpi-conf:hover{background:rgb(245 181 68/.09)}
+.kpi-conf .itile{color:var(--amber);background:rgb(245 181 68/.12);box-shadow:inset 0 0 0 1px rgb(245 181 68/.3)}
+.kpi-conf .kpi-v>span{color:var(--amber)}
+.kpi-tag{position:absolute;top:.7rem;right:.75rem;padding:.1rem .5rem;border-radius:999px;font-size:.6875rem;font-weight:600;background:rgb(245 181 68/.14);color:var(--amber)}
+.kpi-conf[data-n="0"]{border-color:rgb(74 222 128/.32);background:rgb(74 222 128/.04);cursor:default}
+.kpi-conf[data-n="0"] .itile{color:var(--green);background:rgb(74 222 128/.1);box-shadow:inset 0 0 0 1px rgb(74 222 128/.28)}
+.kpi-conf[data-n="0"] .kpi-v>span{color:var(--green)}
+.kpi-conf[data-n="0"] .kpi-tag{background:rgb(74 222 128/.12);color:var(--green)}
+.mk-grid{display:grid;grid-template-columns:12.75rem repeat(7,minmax(0,1fr));border-top:1px solid var(--line)}
+.mk-h{padding:.5rem .65rem .55rem;border-bottom:1px solid var(--line);border-left:1px solid var(--line-soft);font-size:.75rem;font-weight:500;color:var(--muted)}
+.mk-h:first-child{display:flex;align-items:flex-end;border-left:0;padding-left:1rem}
+.mk-h b{display:block;font-family:var(--display);font-size:1.15rem;font-weight:620;letter-spacing:-.02em;color:var(--fg)}
+.mk-h em{margin-left:.3rem;font-style:normal;font-size:.6875rem;color:var(--blue-lt)}
+.mk-h.today{background:linear-gradient(180deg,rgb(61 139 255/.12),rgb(61 139 255/.04));box-shadow:inset 0 2px 0 var(--blue)}
+.mk-h.today b{color:var(--blue-lt)}
+.mk-who{display:flex;align-items:center;gap:.6rem;min-width:0;padding:.45rem .75rem .45rem 1rem;border-bottom:1px solid var(--line-soft)}
+.av{display:grid;place-items:center;flex:none;width:1.95rem;height:1.95rem;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,#0a0a0c);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 38%,transparent);font-size:.65rem;font-weight:600;color:color-mix(in srgb,var(--c) 70%,#fff)}
+.who{min-width:0}
+.who-n{display:block;font-size:.8125rem;font-weight:600;line-height:1.2}
+.who-a{display:block;overflow:hidden;font-size:.6875rem;color:var(--muted);white-space:nowrap;text-overflow:ellipsis}
+.who-h{display:grid;justify-items:end;gap:.3rem;margin-left:auto;font-size:.6875rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.who-h i{display:block;width:2.6rem;height:3px;overflow:hidden;border-radius:3px;background:rgb(255 255 255/.08)}
+.who-h i b{display:block;height:100%;border-radius:inherit;background:#4c5b70;transition:width .4s var(--ease)}
+.who-h.ok i b{background:var(--blue)}
+.who-h.over{color:var(--amber)}
+.who-h.over i b{background:var(--amber)}
+.cell{position:relative;height:3.6rem;padding:.3rem;border-left:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);transition:background-color .15s}
+.cell.we{background:rgb(255 255 255/.012)}
+.cell.today{background:rgb(61 139 255/.045)}
+.cell.drop{background:rgb(61 139 255/.16);box-shadow:inset 0 0 0 1px rgb(61 139 255/.7)}
+.cell.nodrop{background:rgb(245 181 68/.08);box-shadow:inset 0 0 0 1px rgb(245 181 68/.55)}
+.mk-sum,.mk-sum-l{padding:.55rem .65rem;font-size:.6875rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.mk-sum{border-left:1px solid var(--line-soft)}
+.mk-sum-l{padding-left:1rem}
+.mk-sum b{font-weight:600;color:var(--fg-2)}
+.sh{--c:var(--late);position:relative;display:flex;align-items:center;gap:.4rem;width:100%;height:100%;margin:0;padding:0 .55rem 0 .75rem;border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:.6rem;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 17%,#0b0b0e),color-mix(in srgb,var(--c) 9%,#0b0b0e));box-shadow:inset 0 1px 0 color-mix(in srgb,var(--c) 22%,transparent);text-align:left;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;transition:border-color .2s,opacity .2s}
+.sh::before{content:"";position:absolute;left:.32rem;top:.5rem;bottom:.5rem;width:2px;border-radius:2px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.sh:hover{border-color:color-mix(in srgb,var(--c) 70%,transparent)}
+.sh-t{display:grid;gap:.1rem;min-width:0;flex:1}
+.sh b{font-size:.75rem;font-weight:600;line-height:1.1}
+.sh-t span{font-size:.6875rem;line-height:1.1;color:var(--muted);font-variant-numeric:tabular-nums}
+.sh .ti{width:.95rem;height:.95rem;color:var(--c);opacity:.85}
+.sh.F{--c:var(--early)}
+.sh.S{--c:var(--late)}
+.sh.N{--c:var(--night)}
+.sh.U{border:1px dashed rgb(255 255 255/.1);background:repeating-linear-gradient(-45deg,rgb(255 255 255/.04) 0 5px,transparent 5px 11px),#060608;box-shadow:none;color:var(--muted);cursor:not-allowed}
+.sh.U::before{display:none}
+.sh.U b{font-weight:500}
+.sh.U .ti{color:var(--muted);opacity:.7}
+.sh.cf{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 0 22px -6px rgb(245 181 68/.7)}
+.sh.cf .ti{color:var(--amber);opacity:1}
+.sh.lift{opacity:.28}
+.sh.flash{animation:flash 1.3s ease}
+@keyframes flash{0%,100%{box-shadow:0 0 0 1px var(--amber),0 0 22px -6px rgb(245 181 68/.7)}30%,70%{box-shadow:0 0 0 1px var(--amber),0 0 0 7px rgb(245 181 68/.2),0 0 30px -4px rgb(245 181 68/.8)}}
+.ghost{position:fixed;z-index:80;pointer-events:none;rotate:-2deg;scale:1.05;box-shadow:0 20px 44px -12px #000,0 0 0 1px rgb(255 255 255/.08),0 0 30px -8px color-mix(in srgb,var(--c) 70%,transparent)}
+.ghost.in-frame{position:absolute;z-index:5;transition:left .8s cubic-bezier(.45,0,.2,1),top .8s cubic-bezier(.45,0,.2,1)}
+html.dragging,html.dragging *{cursor:grabbing!important}
+.mk-foot{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;padding:.75rem 1rem;border-top:1px solid var(--line);font-size:.75rem;color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:.4rem}
+.lg .ti{width:.95rem;height:.95rem;color:var(--c)}
+.mk-rule{display:inline-flex;align-items:center;gap:.4rem;margin-left:auto}
+.mk-rule .ti{width:.95rem;height:.95rem;color:var(--amber)}
+.cursor{position:absolute;left:0;top:0;z-index:6;width:22px;height:22px;margin:-3px 0 0 -4px;pointer-events:none;opacity:0;transition:transform .8s cubic-bezier(.45,0,.2,1),opacity .3s,scale .15s;filter:drop-shadow(0 3px 6px rgb(0 0 0/.7))}
+.cursor.press{scale:.8}
+.mk-toast{position:absolute;left:50%;bottom:3.4rem;z-index:7;display:flex;align-items:center;gap:.5rem;max-width:calc(100% - 2rem);padding:.55rem .9rem;border:1px solid var(--line-2);border-radius:.75rem;background:rgb(20 20 24/.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 18px 36px -18px #000;font-size:.8125rem;font-weight:500;opacity:0;transform:translate(-50%,8px);transition:opacity .2s,transform .2s var(--ease);pointer-events:none}
+.mk-toast.on{opacity:1;transform:translate(-50%,0)}
+.demo-cap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem 1.25rem;margin-top:1.25rem;font-size:.875rem;color:var(--muted)}
+.hint{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .65rem .25rem .5rem;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);color:var(--fg-2);font-size:.8125rem;font-weight:500}
+.hint .ti{width:.95rem;height:.95rem;color:var(--blue-lt)}
+.swipe{display:inline-flex}
+@media(min-width:900px){.swipe{display:none}}
+
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+.sec{position:relative;padding-block:clamp(4.5rem,8vw,6.75rem)}
+.sec.ruled::before{content:"";position:absolute;top:0;left:50%;width:min(72rem,100%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgb(255 255 255/.14) 30%,rgb(140 188 255/.45) 50%,rgb(255 255 255/.14) 70%,transparent)}
+.split{display:grid;gap:2.25rem}
+@media(min-width:900px){
+  .split{grid-template-columns:5fr 7fr;gap:4rem}
+  .split.even{grid-template-columns:1fr 1fr}
+  .split.faqs{grid-template-columns:4fr 8fr}
+}
+.sec-head{max-width:46rem}
+.sec-head .lede{margin-top:1.25rem}
+
+/* Decision tree */
+.tree{position:relative;margin-top:clamp(3rem,6vw,4.5rem)}
+.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;display:none}
+.wire{fill:none;stroke:rgb(255 255 255/.13);stroke-width:1}
+.wire-hot{fill:none;stroke:var(--blue-lt);stroke-width:1.5;stroke-dasharray:4 7;opacity:0;transition:opacity .35s;animation:flow .9s linear infinite}
+.wire-hot.on{opacity:1}
+.wire-dot{fill:#000;stroke:rgb(255 255 255/.25);stroke-width:1;transition:stroke .3s,fill .3s}
+.wire-dot.on{fill:var(--blue);stroke:var(--blue-lt)}
+@keyframes flow{to{stroke-dashoffset:-22}}
+.root{position:relative;display:flex;gap:1rem;align-items:flex-start;max-width:28rem;padding:1.2rem 1.35rem 1.3rem;border:1px solid rgb(255 255 255/.12);border-bottom-color:rgb(255 255 255/.035);border-radius:1.15rem;box-shadow:var(--surf-edge);background:var(--glass),var(--glass-tint)}
+.root p{margin-top:.35rem;font-size:.9375rem;line-height:1.55;color:var(--muted)}
+.root::after{content:"";position:absolute;left:2.45rem;top:100%;width:1px;height:1.5rem;background:var(--line-2)}
+.leaves{position:relative;display:grid;gap:.9rem;margin:1.5rem 0 0;padding:0 0 0 3.4rem;list-style:none}
+.leaves::before{content:"";position:absolute;left:2.45rem;top:0;bottom:2.4rem;width:1px;background:var(--line-2)}
+.leaf{position:relative;padding:1.2rem 1.25rem 1.35rem;border:1px solid var(--line);border-bottom-color:rgb(255 255 255/.025);border-radius:1.05rem;background:var(--glass),var(--glass-tint);transition:border-color .3s,background-color .3s}
+.leaf::before{content:"";position:absolute;left:-.95rem;top:2.3rem;width:.95rem;height:1px;background:var(--line-2)}
+.leaf .itile{margin-bottom:1rem}
+.leaf .if{font-size:.8125rem;font-weight:500;color:var(--muted);transition:color .3s}
+.leaf .h3{margin-top:.25rem;font-size:1.375rem}
+.leaf p.d{margin-top:.5rem;font-size:.9375rem;line-height:1.55;color:var(--fg-2)}
+.leaf.on{border-color:rgb(61 139 255/.42);border-bottom-color:rgb(61 139 255/.1);background:linear-gradient(180deg,rgb(61 139 255/.09),rgb(61 139 255/0) 70%),var(--glass-tint)}
+.leaf.on .if{color:var(--blue-lt)}
+.leaf.on .itile{color:var(--blue-lt);background:rgb(61 139 255/.08);box-shadow:inset 0 0 0 1px rgb(61 139 255/.25)}
+@media(min-width:900px){
+  .wires{display:block}
+  .root{margin-inline:auto;flex-direction:column;align-items:center;text-align:center}
+  .root::after,.leaves::before,.leaf::before{display:none}
+  .leaves{grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:4.5rem;padding:0}
+}
+
+/* Symptoms bento with spotlight edges */
+.symp{display:grid;gap:1rem;margin:3rem 0 0;padding:0;list-style:none}
+.symp li{display:flex;flex-direction:column;gap:.95rem;padding:1.6rem 1.5rem 1.5rem;border:1px solid transparent;border-radius:1.3rem;background:radial-gradient(560px circle at var(--x,-50%) var(--y,-50%),rgb(140 188 255/calc(.05 * var(--glow,0))),transparent 45%),var(--glass),var(--glass-tint)}
+@media(min-width:760px){
+  .symp{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .symp li{grid-column:span 3}
+  .symp li:nth-child(n+3){grid-column:span 2}
+}
+.sq{font-family:var(--display);font-weight:520;font-stretch:94%;font-size:clamp(1.2rem,1.7vw,1.42rem);line-height:1.28;letter-spacing:-.015em;text-wrap:pretty}
+.sa{font-size:.9375rem;line-height:1.55;color:var(--muted)}
+.tag{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;margin-top:auto;padding:.28rem .7rem .28rem .5rem;border-radius:999px;background:rgb(61 139 255/.1);box-shadow:inset 0 0 0 1px rgb(61 139 255/.26);font-size:.75rem;font-weight:600;color:var(--blue-lt)}
+.tag .ti{width:.9rem;height:.9rem}
+.more{display:inline-flex;align-items:center;gap:.45rem;margin-top:2.25rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.more .ti{width:1.05rem;height:1.05rem;transition:transform .2s var(--ease)}
+.more:hover .ti{transform:translateX(3px)}
+
+/* Origin story + hall screen */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:2.25rem 0 0;max-width:36rem;border-block:1px solid var(--line)}
+.facts div{display:flex;flex-direction:column;gap:.15rem;padding:1rem 1rem 1.05rem 0}
+.facts dd{order:-1}
+.facts div+div{padding-left:1rem;border-left:1px solid var(--line)}
+.facts dt{font-size:.8125rem;line-height:1.35;color:var(--muted)}
+.facts dd{margin:0;font-family:var(--display);font-size:1.75rem;font-weight:640;letter-spacing:-.02em;line-height:1.1}
+.kiosk-wrap{position:relative;align-self:center;margin:0}
+.kiosk{position:relative;padding:.6rem;border-radius:1.4rem;background:linear-gradient(180deg,#1d1d22,#0c0c0f);box-shadow:inset 0 1px 0 rgb(255 255 255/.1),inset 0 0 0 1px rgb(255 255 255/.05),0 1px 2px #000}
+.ks{position:relative;overflow:hidden;min-height:17.5rem;padding:1.15rem 1.3rem 1.1rem;border-radius:.9rem;background:#020203;box-shadow:inset 0 0 0 1px #000}
+.ks::after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgb(255 255 255/.06),transparent 32%);pointer-events:none}
+.ks-top{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--line-soft)}
+.ks-day{font-size:.8125rem;color:var(--muted)}
+.ks-day b{display:block;margin-top:.1rem;font-family:var(--display);font-size:1.3rem;font-weight:620;letter-spacing:-.02em;color:var(--fg)}
+.live{display:inline-flex;align-items:center;gap:.35rem;margin-right:.4rem;padding:.05rem .45rem;border-radius:999px;background:rgb(74 222 128/.1);color:var(--green);font-size:.6875rem;font-weight:600}
+.live::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgb(74 222 128/.6);animation:live 2.4s ease-out infinite}
+@keyframes live{70%{box-shadow:0 0 0 .4rem rgb(74 222 128/0)}100%{box-shadow:0 0 0 0 rgb(74 222 128/0)}}
+.ks-clock{font-family:var(--display);font-size:2.4rem;font-weight:600;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.ks-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:1rem}
+.ks-col h3{display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--fg-2)}
+.ks-col h3 .ti{width:.95rem;height:.95rem;color:var(--c)}
+.ks-col h3 span{font-weight:500;color:var(--muted)}
+.ks-col ul{display:grid;gap:.35rem;margin:.55rem 0 0;padding:0;list-style:none}
+.ks-col li{display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;border-radius:.55rem;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 13%,#0a0a0d),color-mix(in srgb,var(--c) 7%,#0a0a0d));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 18%,transparent);font-size:.8125rem;font-weight:600;line-height:1.25}
+.ks-col li small{display:block;font-size:.6875rem;font-weight:500;color:var(--muted)}
+.ks-col li .av{width:1.6rem;height:1.6rem;font-size:.6rem}
+.ks-col li.none{background:transparent;box-shadow:inset 0 0 0 1px var(--line-soft);font-weight:500;color:var(--muted)}
+.ks-col.F{--c:var(--early)}.ks-col.S{--c:var(--late)}.ks-col.N{--c:var(--night)}
+.ks-off{display:flex;align-items:center;gap:.45rem;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line-soft);font-size:.8125rem;color:var(--muted)}
+.ks-off .ti{width:.95rem;height:.95rem}
+.ks-off b{font-weight:600;color:var(--fg-2)}
+.stand{width:26%;height:.65rem;margin:0 auto;border-radius:0 0 .5rem .5rem;background:linear-gradient(180deg,#18181c,#0b0b0d);box-shadow:inset 0 0 0 1px rgb(255 255 255/.04)}
+.kiosk-cap{display:flex;gap:.6rem;max-width:32rem;margin-top:1.3rem;font-size:.875rem;color:var(--muted)}
+.kiosk-cap .ti{width:1.05rem;height:1.05rem;margin-top:.15rem;color:var(--blue-lt)}
+@media(max-width:520px){.ks-cols{grid-template-columns:1fr}.ks-clock{font-size:1.9rem}}
+
+/* Modules */
+.glow{position:relative}
+.glow::after{content:"";position:absolute;inset:-1px;z-index:2;padding:1px;border-radius:inherit;pointer-events:none;background:radial-gradient(300px circle at var(--x,50%) var(--y,0%),rgb(140 188 255/calc(.75 * var(--glow,0))),rgb(138 125 255/calc(.22 * var(--glow,0))) 40%,transparent 70%),linear-gradient(180deg,rgb(255 255 255/.16),rgb(255 255 255/.06) 38%,rgb(255 255 255/.022));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.glow:focus-within{--glow:1}
+.plate-hint{position:absolute;right:.6rem;bottom:.6rem;display:flex;align-items:center;gap:.35rem;padding:.3rem .6rem;border-radius:999px;background:rgb(0 0 0/.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px var(--line);font-size:.75rem;font-weight:500;color:var(--fg-2);opacity:0;transition:opacity .2s}
+.plate-hint .ti{width:.85rem;height:.85rem}
+.mod-head{display:flex;align-items:center;gap:.75rem}
+.mod-kind{font-size:.8125rem;font-weight:500;color:var(--muted)}
+.vers{display:flex;gap:.25rem;margin-left:auto}
+.vers span{padding:.12rem .45rem;border-radius:.4rem;box-shadow:inset 0 0 0 1px var(--line);font-size:.6875rem;font-weight:600;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.mod-desc{max-width:34rem;margin-top:.6rem;font-size:.9375rem;color:var(--fg-2)}
+.spec{display:grid;margin:1.3rem 0 0}
+.spec div{display:grid;grid-template-columns:auto 7.25rem 1fr;align-items:baseline;gap:.75rem;padding:.7rem 0;border-top:1px solid var(--line-soft);font-size:.875rem}
+.spec .ti{align-self:center;width:1rem;height:1rem;color:var(--muted)}
+.spec dt{color:var(--muted)}
+.spec dd{margin:0}
+.mod-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem;margin-top:auto;padding-top:1.3rem;border-top:1px solid var(--line-soft)}
+.spec+.mod-foot{margin-top:1.3rem}
+.price{font-family:var(--display);font-size:2.2rem;font-weight:650;line-height:1;letter-spacing:-.03em}
+.price small{display:block;margin-top:.4rem;font-family:var(--body);font-size:.8125rem;font-weight:500;letter-spacing:0;color:var(--muted)}
+
+/* Lightbox */
+.lb{max-width:min(94vw,1400px);max-height:92vh;padding:0;overflow:hidden;border:1px solid var(--line-2);border-radius:1rem;background:#000;color:var(--fg)}
+.lb::backdrop{background:rgb(0 0 0/.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.lb img{max-width:100%;max-height:calc(92vh - 2px);object-fit:contain}
+.lb-x{position:absolute;top:.6rem;right:.6rem;display:grid;place-items:center;width:2.4rem;height:2.4rem;border:0;border-radius:999px;background:rgb(0 0 0/.75);box-shadow:inset 0 0 0 1px var(--line-2);cursor:pointer}
+.lb-x .ti{width:1.15rem;height:1.15rem}
+
+/* Partner */
+
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.3rem 0;font-size:1.0625rem;font-weight:600;line-height:1.4;list-style:none;cursor:pointer;transition:color .2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:#fff}
+.pm{display:grid;place-items:center;flex:none;width:1.9rem;height:1.9rem;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--fg-2);transition:transform .35s var(--ease),background-color .2s,color .2s}
+.pm .ti{width:1rem;height:1rem}
+.faq details[open] .pm{transform:rotate(45deg);background:rgb(61 139 255/.14);color:var(--blue-lt);box-shadow:inset 0 0 0 1px rgb(61 139 255/.4)}
+.ans{max-width:42rem;padding:0 3rem 1.45rem 0;color:var(--fg-2)}
+@supports (interpolate-size:allow-keywords){
+  :root{interpolate-size:allow-keywords}
+  .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .4s var(--ease),content-visibility .4s allow-discrete}
+  .faq details[open]::details-content{block-size:auto}
+}
+
+/* Contact */
+.contact{position:relative;isolation:isolate;overflow:hidden;padding:clamp(1.5rem,5vw,3.5rem);border:0;border-radius:2rem;background:var(--glass),var(--glass-tint);box-shadow:0 60px 120px -60px rgb(61 139 255/.3)}
+.contact::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(40rem 22rem at 0% 0%,rgb(61 139 255/.16),transparent 70%),radial-gradient(36rem 24rem at 100% 100%,rgb(138 125 255/.12),transparent 70%)}
+.contact::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgb(255 255 255/.13) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 55% 60% at 12% 8%,#000 5%,transparent 70%);mask-image:radial-gradient(ellipse 55% 60% at 12% 8%,#000 5%,transparent 70%)}
+.contact-edge{position:absolute;inset-inline:12%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgb(255 255 255/.45),transparent);pointer-events:none}
+.direct{margin-top:2rem;border-top:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:.9rem;min-height:3.6rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.row .itile{width:2rem;height:2rem;border-radius:.6rem}
+.row .itile .ti{width:1rem;height:1rem}
+.row .kv{min-width:0}
+.row .k{display:block;font-size:.75rem;color:var(--muted)}
+.row .v{display:block;font-weight:500;text-decoration:none;overflow-wrap:anywhere}
+a.v:hover{color:var(--blue-lt)}
+.copy{display:grid;place-items:center;flex:none;width:2.2rem;height:2.2rem;margin-left:auto;border:0;border-radius:.6rem;background:rgb(255 255 255/.05);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;color:var(--fg-2);transition:background-color .2s,color .2s}
+.copy:hover{background:rgb(255 255 255/.1);color:var(--fg)}
+.copy .ti{width:1rem;height:1rem}
+.field{display:grid;gap:.5rem;margin:1.3rem 0 0;padding:0;border:0;min-width:0}
+.field label,.field legend{padding:0;font-size:.875rem;font-weight:600}
+.field legend{margin-bottom:.5rem}
+.input{width:100%;padding:.75rem .9rem;border:1px solid var(--line);border-radius:.8rem;background:rgb(255 255 255/.03);font-size:.9375rem;line-height:1.5;resize:vertical;transition:border-color .2s,box-shadow .2s,background-color .2s}
+.input::placeholder{color:#6c6c76}
+.input:hover{border-color:var(--line-2)}
+.input:focus{outline:none;border-color:rgb(61 139 255/.75);background:rgb(61 139 255/.04);box-shadow:0 0 0 3px rgb(61 139 255/.2)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{position:relative}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.chip span{display:inline-flex;padding:.45rem .85rem;border-radius:999px;background:rgb(255 255 255/.03);box-shadow:inset 0 0 0 1px var(--line);font-size:.8125rem;font-weight:600;color:var(--fg-2);transition:background-color .2s,box-shadow .2s,color .2s}
+.chip input:hover+span{background:rgb(255 255 255/.07)}
+.chip input:checked+span{background:rgb(61 139 255/.18);box-shadow:inset 0 0 0 1px rgb(61 139 255/.7);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--blue-lt);outline-offset:2px}
+
+/* Footer */
+.ft{position:relative;padding:4.5rem 0 0;overflow:hidden}
+.ft::before{content:"";position:absolute;top:0;left:50%;width:min(72rem,100%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgb(255 255 255/.14),transparent)}
+.ft-grid{display:grid;gap:2.5rem}
+@media(min-width:760px){.ft-grid{grid-template-columns:2fr 1fr 1fr}}
+.ft-tag{max-width:22rem;margin-top:1rem;font-size:.9375rem;color:var(--muted)}
+.ft h2{font-size:.875rem;font-weight:600}
+.ft ul{display:grid;gap:.6rem;margin:.95rem 0 0;padding:0;list-style:none}
+.ft ul a{display:inline-flex;align-items:center;gap:.35rem;font-size:.9375rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.ft ul a .ti{width:.85rem;height:.85rem;opacity:.7}
+.ft ul a:hover{color:var(--fg)}
+.ft-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--line-soft);font-size:.8125rem;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:.75rem}
+.wordmark{margin-top:2.5rem;font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(3rem,12.5vw,11.5rem);line-height:.8;letter-spacing:-.028em;text-align:center;white-space:nowrap;background:linear-gradient(180deg,rgb(255 255 255/.13),rgb(255 255 255/0) 88%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-user-select:none;user-select:none}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:1.5rem;z-index:90;display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border:1px solid var(--line-2);border-radius:.9rem;background:rgb(16 16 19/.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 20px 40px -20px #000;font-size:.875rem;font-weight:500;opacity:0;transform:translate(-50%,1rem);transition:opacity .25s,transform .25s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast .ti{width:1.05rem;height:1.05rem;color:var(--green)}
+
+
+/* ── Reveal on scroll (animation, so it never fights a card's own transitions) ── */
+.js [data-reveal]{opacity:0}
+.js [data-reveal].in{animation:reveal .95s var(--ease) var(--rd,0s) both}
+@keyframes reveal{from{opacity:0;translate:0 26px}to{opacity:1;translate:none}}
+
+/* ── Guarantees bento ─────────────────────────────────────────────────── */
+.vb-wrap{position:relative;margin-top:3rem}
+.vb{display:grid;gap:1rem}
+@media(min-width:700px){.vb{grid-template-columns:repeat(2,minmax(0,1fr))}.vt.a,.vt.b,.vt.e{grid-column:span 2}}
+@media(min-width:1000px){.vb{grid-template-columns:repeat(12,minmax(0,1fr))}.vt.a{grid-column:span 7}.vt.b{grid-column:span 5}.vt.c,.vt.d,.vt.e{grid-column:span 4}}
+.vt{display:flex;flex-direction:column;border:1px solid transparent;border-radius:1.5rem;background:var(--glass),var(--glass-tint)}
+.vt-vis{position:relative;height:15rem;overflow:hidden;border-radius:calc(1.5rem - 1px) calc(1.5rem - 1px) 0 0;background:radial-gradient(120% 90% at 50% 0%,rgb(255 255 255/.035),transparent 60%)}
+.vt-body{padding:1.25rem 1.4rem 1.45rem;border-top:1px solid var(--line-soft)}
+.vt-body .h3{font-size:1.25rem}
+.vt-body p{max-width:34rem;margin-top:.4rem;font-size:.9375rem;line-height:1.55;color:var(--muted)}
+
+/* A: editor, leans back until hovered */
+.vis-code{perspective:1100px}
+.ed{position:absolute;left:1.5rem;right:-1.5rem;top:1.6rem;bottom:-2rem;overflow:hidden;border:1px solid var(--line-2);border-radius:.9rem;background:#050507;box-shadow:0 30px 60px -20px #000,inset 0 1px 0 rgb(255 255 255/.06);transform:rotateX(9deg) rotateY(-11deg) rotateZ(1deg);transform-origin:15% 0;-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 95%);mask-image:linear-gradient(180deg,#000 60%,transparent 95%)}
+.ed-bar{display:flex;align-items:center;gap:.25rem;padding:.45rem .5rem;border-bottom:1px solid var(--line)}
+.ed-tab{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:.45rem;font:400 .6875rem/1.2 var(--mono);color:var(--muted);white-space:nowrap}
+.ed-tab .ti{width:.8rem;height:.8rem}
+.ed-tab.on{background:rgb(255 255 255/.06);color:var(--fg-2)}
+.ed-dl{display:inline-flex;align-items:center;gap:.35rem;margin:0 2rem 0 auto;padding:.25rem .65rem;border-radius:999px;background:rgb(255 255 255/.06);box-shadow:inset 0 0 0 1px var(--line);font-size:.6875rem;font-weight:600;color:var(--fg-2);white-space:nowrap}
+.ed-dl .ti{width:.8rem;height:.8rem}
+.ed-main{display:grid;grid-template-columns:minmax(0,1fr) 10.5rem}
+.ed-code{position:relative;overflow:hidden;padding:.7rem 0;font:400 .75rem/1.75 var(--mono);color:var(--fg-2);white-space:pre}
+.ed-code p{position:relative;padding-left:.4rem}
+.ln{display:inline-block;width:1.4rem;margin-right:.7rem;text-align:right;color:#46464e}
+.ky{color:var(--blue-lt)}.st{color:#d6d6de}.pu{color:#6c6c76}.bo{color:#b9adff}
+.ed-hl{position:absolute;left:0;right:0;top:calc(.7rem + 1.75em);height:1.75em;background:rgb(61 139 255/.08);box-shadow:inset 2px 0 0 var(--blue);transition:top .55s var(--ease)}
+.vt:hover .ed-hl{top:calc(.7rem + 3.5em)}
+.ed-tree{margin:0;padding:.55rem .5rem;list-style:none;border-left:1px solid var(--line);font:400 .6875rem/1 var(--mono);color:var(--muted)}
+.ed-tree li{display:flex;align-items:center;gap:.4rem;padding:.38rem .4rem;border-radius:.35rem;white-space:nowrap}
+.ed-tree li:not(.dir){padding-left:1.15rem}
+.ed-tree li.on{background:rgb(255 255 255/.05);color:var(--fg-2)}
+.ed-tree .ti{width:.8rem;height:.8rem}
+.ed-tree em{margin:0 2rem 0 auto;padding:.08rem .3rem;border-radius:.3rem;box-shadow:inset 0 0 0 1px var(--line);font-style:normal;font-size:.625rem}
+@media(max-width:560px){.ed-main{grid-template-columns:1fr}.ed-tree{display:none}.ed-tab:nth-child(2){display:none}}
+
+/* B: version plates in 3D, they spread apart on hover */
+.vis-stack{perspective:900px}
+.stack{position:absolute;left:50%;top:50%;width:9.5rem;height:9.5rem;margin:-3.6rem 0 0 -4.75rem;transform:rotateX(56deg) rotateZ(-42deg);transform-style:preserve-3d}
+.pl3{position:absolute;inset:0;border:1px solid rgb(255 255 255/.12);border-radius:1rem;background:linear-gradient(135deg,#1d1d23,#0a0a0d);box-shadow:inset 0 1px 0 rgb(255 255 255/.07),16px 16px 30px rgb(0 0 0/.6);transition:transform .8s var(--ease)}
+.p17{transform:translateZ(0)}
+.p18{transform:translateZ(22px)}
+.p19{transform:translateZ(44px);border-color:rgb(61 139 255/.4);background:linear-gradient(135deg,#16223a,#090c13)}
+.vt:hover .p18{transform:translateZ(42px)}
+.vt:hover .p19{transform:translateZ(84px)}
+.pl3 b{position:absolute;left:.85rem;top:.55rem;font-family:var(--display);font-size:1.6rem;font-weight:650;letter-spacing:-.03em;color:#5e5e68}
+.p19 b{color:var(--blue-lt)}
+.pl-mods{position:absolute;right:.7rem;bottom:.7rem;display:flex;gap:.35rem}
+.pl-mods i{display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:.5rem;background:rgb(255 255 255/.06);box-shadow:inset 0 0 0 1px rgb(255 255 255/.1);color:var(--fg-2)}
+.pl-mods .ti{width:1rem;height:1rem}
+
+/* C: request list with a scan line on hover */
+.vis-req{display:grid;place-items:center;padding:1.25rem}
+.req{position:relative;width:100%;max-width:19rem;overflow:hidden;border:1px solid var(--line);border-radius:.8rem;background:#050507;font-size:.75rem}
+.req-h{display:flex;justify-content:space-between;padding:.45rem .75rem;border-bottom:1px solid var(--line);font-size:.6875rem;color:#5d5d66}
+.req p{display:flex;align-items:center;gap:.5rem;padding:.42rem .75rem;border-bottom:1px solid var(--line-soft);color:var(--fg-2)}
+.req p:last-of-type{border-bottom:0}
+.req .ti{width:.85rem;height:.85rem;color:var(--muted)}
+.req p span{margin-left:auto;font-size:.6875rem;color:var(--muted)}
+.req .ok{color:var(--green)}
+.req p.off,.req p.off .ti{color:#55555e}
+.req .zero{padding:.05rem .4rem;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);color:#6c6c76}
+.req-scan{position:absolute;left:0;right:0;top:0;height:2.2rem;background:linear-gradient(180deg,transparent,rgb(61 139 255/.12),transparent);translate:0 -2.2rem;pointer-events:none}
+.vt:hover .req-scan{animation:scan 1.5s var(--ease)}
+@keyframes scan{to{translate:0 12rem}}
+
+/* D: live database, tested copy */
+.vis-db{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:1rem}
+.db{display:grid;justify-items:center;gap:.1rem;text-align:center}
+.db b{margin-top:.65rem;font-size:.8125rem;font-weight:600}
+.db small{font-size:.6875rem;color:var(--muted)}
+.cyl{position:relative;display:grid;justify-items:center;width:4.25rem;height:4.75rem;border-radius:50%/.85rem;background:linear-gradient(90deg,#0f0f13,#1e1e24 45%,#0c0c0f);box-shadow:inset 0 0 0 1px rgb(255 255 255/.1),0 22px 30px -14px #000}
+.cyl::before{content:"";position:absolute;inset:0 0 auto;height:1.7rem;border-radius:50%;background:linear-gradient(180deg,#2b2b32,#16161b);box-shadow:inset 0 0 0 1px rgb(255 255 255/.14)}
+.cyl::after{content:"";position:absolute;left:0;right:0;top:44%;height:1.7rem;border-radius:50%;border-bottom:1px solid rgb(255 255 255/.08)}
+.db.twin .cyl::before{background:linear-gradient(180deg,#1d3253,#0f1828);box-shadow:inset 0 0 0 1px rgb(61 139 255/.4)}
+.cyl .ti{position:relative;z-index:1;width:1.15rem;height:1.15rem;margin-top:2.2rem;color:var(--green)}
+.db-link{width:5.5rem;height:2.5rem;margin-bottom:3rem;overflow:visible}
+.db-link path{fill:none;stroke:rgb(255 255 255/.28);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.db-link .pulse{stroke:var(--blue-lt);stroke-width:2;stroke-dasharray:16 100;stroke-dashoffset:16;opacity:0}
+.vt:hover .db-link .arc,.vt:hover .db-link .ah{stroke:rgb(140 188 255/.6)}
+.vt:hover .db-link .pulse{opacity:1;animation:pulse 1.5s var(--ease) infinite}
+@keyframes pulse{from{stroke-dashoffset:16}to{stroke-dashoffset:-100}}
+
+/* E: dotted ground plane in perspective, pin standing on it */
+.vis-map{perspective:820px}
+.vis-map::before{display:none}
+.plane{position:absolute;left:50%;top:43%;width:11.5rem;height:11.90rem;transform:translate(-50%,-50%) rotateX(54deg) rotateZ(-8deg);transform-style:preserve-3d}
+.plane-dots{position:absolute;inset:-45%;background-image:radial-gradient(rgb(255 255 255/.26) 1px,transparent 1.4px);background-size:13px 13px;-webkit-mask-image:radial-gradient(closest-side,#000 35%,transparent);mask-image:radial-gradient(closest-side,#000 35%,transparent)}
+.by{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.by path{fill:rgb(61 139 255/.07);stroke:rgb(140 188 255/.75);stroke-width:1.3;stroke-linejoin:round;transition:fill .4s}
+.vt:hover .by path{fill:rgb(61 139 255/.12)}
+.spot{position:absolute;width:0;height:0;transform-style:preserve-3d}
+.spot::before{content:"";position:absolute;left:-.55rem;top:-.3rem;width:1.1rem;height:.6rem;border-radius:50%;background:rgb(0 0 0/.75);filter:blur(2px)}
+.ring{position:absolute;left:-2.5rem;top:-2.5rem;width:5rem;height:5rem;border:1px solid rgb(140 188 255/.55);border-radius:50%;transform:scale(.45);opacity:.45}
+.ring.r2{transform:scale(.85);opacity:.2}
+.vt:hover .ring{animation:ring 2.4s var(--ease) infinite}
+.vt:hover .ring.r2{animation-delay:1.2s}
+@keyframes ring{from{transform:scale(.2);opacity:.9}to{transform:scale(1.3);opacity:0}}
+.pin{position:absolute;left:-.8rem;bottom:0;display:grid;justify-items:center;width:1.6rem;transform-origin:50% 100%;transform:rotateX(-90deg)}
+.pin-head{position:relative;width:1.6rem;height:1.6rem;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a6cbff,#3d8bff 45%,#1b4f9e);box-shadow:inset 0 -2px 4px rgb(0 0 0/.35)}
+.pin-head::after{content:"";position:absolute;left:50%;top:50%;width:.42rem;height:.42rem;margin:-.21rem 0 0 -.21rem;border-radius:50%;background:#fff}
+.pin-stick{width:2px;height:2.1rem;border-radius:2px;background:linear-gradient(180deg,#9aa3b2,#4a4f58)}
+.map-l{position:absolute;left:1.15rem;bottom:1rem;display:grid;gap:.1rem;font-size:.8125rem}
+.map-l b{font-weight:600}
+.map-l .mono{font-size:.6875rem;color:var(--muted)}
+
+/* ── Symptom vignettes ────────────────────────────────────────────────── */
+.vg{position:relative;display:flex;align-items:center;gap:.9rem;height:4.6rem;margin-bottom:.35rem}
+.vg-sheet{display:grid;grid-template-columns:repeat(5,2.3rem);grid-template-rows:repeat(4,.8rem);gap:3px;align-content:center;align-items:stretch}
+.vg-sheet i{position:relative;border-radius:2px;background:rgb(255 255 255/.065);box-shadow:inset 0 0 0 1px rgb(255 255 255/.08)}
+.vg-sheet i.h{background:rgb(255 255 255/.14)}
+.vg-sheet i.f::before{content:"";position:absolute;left:4px;top:50%;width:calc(var(--w) - 8px);height:2px;margin-top:-1px;border-radius:2px;background:rgb(255 255 255/.32)}
+.vg-sheet i.x{display:grid;place-items:center;background:rgb(245 181 68/.1);box-shadow:inset 0 0 0 1px rgb(245 181 68/.6);color:var(--amber)}
+.vg-sheet i.x .ti{width:.6rem;height:.6rem}
+.fld-st{display:grid;gap:.35rem}
+.fld{display:flex;align-items:center;width:11rem;padding:.35rem .6rem;border-radius:.5rem;background:rgb(255 255 255/.03);box-shadow:inset 0 0 0 1px var(--line);font-size:.6875rem}
+.fld+.fld{margin-left:1rem}
+.fld small{width:4.6rem;font-size:inherit;color:var(--muted)}
+.fld b{font-weight:600;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.dup{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .55rem .2rem .45rem;border-radius:999px;background:rgb(245 181 68/.1);box-shadow:inset 0 0 0 1px rgb(245 181 68/.4);font-size:.6875rem;font-weight:600;color:var(--amber);white-space:nowrap}
+.dup .ti{width:.8rem;height:.8rem}
+.doc{position:relative;display:grid;align-content:start;gap:4px;width:3.5rem;height:4.25rem;padding:.5rem .45rem;border-radius:.3rem;background:linear-gradient(180deg,#eceef2,#cdd2da);box-shadow:0 14px 22px -10px #000;rotate:-7deg}
+.doc i{display:block;width:var(--w);height:2px;border-radius:2px;background:#8b919c}
+.doc i.t{height:4px;margin-bottom:2px;background:#3d8bff}
+.doc .sum{position:absolute;right:.45rem;bottom:.5rem;width:1.1rem;height:3px;border-radius:2px;background:#4b515c}
+.fmt{display:grid;gap:.35rem}
+.fmt span{padding:.22rem .55rem;border-radius:.4rem;box-shadow:inset 0 0 0 1px var(--line-2);font:400 .6875rem/1.2 var(--mono);color:var(--fg-2)}
+.leg-code{display:grid;gap:6px;width:9.5rem;padding:.6rem .7rem;border-radius:.55rem;background:#050507;box-shadow:inset 0 0 0 1px var(--line)}
+.leg-code i{display:block;width:var(--w);height:3px;border-radius:2px;background:rgb(255 255 255/.17)}
+.leg-code .cm{font:italic 400 .625rem/1.1 var(--mono);color:#6f7a68}
+.anon{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .6rem .25rem .4rem;border:1px dashed rgb(255 255 255/.18);border-radius:999px;font-size:.6875rem;color:var(--muted);white-space:nowrap}
+.anon .ti{width:.85rem;height:.85rem}
+.vg-ver{gap:.35rem}
+.vg-ver .v{display:grid;place-items:center;width:2.15rem;height:2.15rem;border-radius:.55rem;box-shadow:inset 0 0 0 1px var(--line);font-family:var(--display);font-size:.95rem;font-weight:620;color:#5d5d66}
+.vg-ver .v.cur{background:rgb(255 255 255/.06);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--fg)}
+.vg-ver .sep{width:.8rem;height:1px;background:repeating-linear-gradient(90deg,rgb(255 255 255/.25) 0 3px,transparent 3px 6px)}
+.vg-ver .lk{display:grid;place-items:center;width:1.65rem;height:1.65rem;border-radius:50%;background:rgb(245 181 68/.1);box-shadow:inset 0 0 0 1px rgb(245 181 68/.4);color:var(--amber)}
+.vg-ver .lk .ti{width:.85rem;height:.85rem}
+
+/* ── Card patterns ───────────────────────────────────────────────────── */
+.symp li{position:relative;isolation:isolate}
+.symp li::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background-image:radial-gradient(rgb(255 255 255/.14) 1px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 100% 0%,#000,transparent 72%);mask-image:radial-gradient(ellipse 75% 70% at 100% 0%,#000,transparent 72%)}
+.leaf{isolation:isolate}
+.leaf::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background-image:radial-gradient(rgb(255 255 255/.11) 1px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(ellipse 80% 70% at 100% 0%,#000,transparent 70%)}
+.vt-vis::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgb(255 255 255/.05) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/.05) 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px;-webkit-mask-image:radial-gradient(ellipse 85% 80% at 50% 30%,#000 10%,transparent 78%);mask-image:radial-gradient(ellipse 85% 80% at 50% 30%,#000 10%,transparent 78%)}
+.vis-db>*{position:relative}
+
+
+/* ── Partner ──────────────────────────────────────────────────────────── */
+.p-head{display:grid;gap:1.5rem}
+.p-intro{display:grid;justify-items:start;gap:1.5rem}
+@media(min-width:900px){.p-head{grid-template-columns:7fr 5fr;align-items:end;gap:4rem}}
+.pb{display:grid;gap:1rem;margin-top:3rem}
+@media(min-width:1000px){.pb{grid-template-columns:repeat(12,minmax(0,1fr))}.pb-line{grid-column:span 7}.pb-when{grid-column:span 5}.pb-caps{grid-column:1/-1}}
+.vis-line{display:grid;grid-template-columns:auto minmax(3rem,1fr) auto;align-items:center;align-content:center;padding:0 2.75rem 2.6rem}
+.node{position:relative;display:grid;justify-items:center;justify-self:center;min-width:9.5rem;padding:1rem 1.1rem .95rem;border-radius:1rem;background:#050507;box-shadow:inset 0 0 0 1px var(--line-2),0 22px 34px -18px #000;text-align:center}
+.node b{margin-top:.6rem;font-size:.8125rem;font-weight:600}
+.node small{font-size:.6875rem;color:var(--muted)}
+.node.dev{box-shadow:inset 0 0 0 1px rgb(61 139 255/.35),0 22px 34px -18px #000}
+.link{position:relative;display:grid;align-items:center}
+.link svg{width:100%;height:12px;overflow:visible}
+.link path{fill:none;stroke-width:1.5;stroke-linecap:round}
+.link .base{stroke:rgb(255 255 255/.25)}
+.link .pulse{stroke:var(--blue-lt);stroke-width:2;stroke-dasharray:18 100;stroke-dashoffset:18;opacity:0}
+.vt:hover .link .base{stroke:rgb(140 188 255/.55)}
+.vt:hover .link .pulse{opacity:1;animation:pulse 1.6s var(--ease) infinite}
+.link .tag-direct{position:absolute;left:50%;top:-1.7rem;translate:-50% 0;padding:.12rem .55rem;border-radius:999px;background:#08080a;box-shadow:inset 0 0 0 1px var(--line-2);font-size:.6875rem;font-weight:600;color:var(--fg-2);white-space:nowrap}
+.crew{position:absolute;top:100%;left:50%;display:grid;justify-items:center;translate:-50% 0}
+.vline{width:1px;height:1.1rem;background:repeating-linear-gradient(180deg,rgb(255 255 255/.3) 0 3px,transparent 3px 6px)}
+.crew-chip{display:inline-flex;align-items:center;gap:.45rem;padding:.25rem .65rem .25rem .3rem;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:.6875rem;color:var(--muted);white-space:nowrap}
+.crew-chip .dots{display:flex}
+.crew-chip .dots i{width:1.05rem;height:1.05rem;border-radius:50%;background:linear-gradient(180deg,#2a2a31,#151519);box-shadow:0 0 0 2px #08080a}
+.crew-chip .dots i+i{margin-left:-.35rem}
+@media(max-width:560px){.vis-line{padding:0 .9rem 3.4rem}.crew{left:auto;right:-.5rem;translate:none;justify-items:end}.node{min-width:0;padding:.85rem .7rem}.crew-chip{white-space:normal;text-align:left}}
+.pb-when{position:relative;isolation:isolate}
+.pb-when::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background-image:radial-gradient(rgb(255 255 255/.12) 1px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 100% 0%,#000,transparent 72%);mask-image:radial-gradient(ellipse 80% 60% at 100% 0%,#000,transparent 72%)}
+.when{display:flex;flex-direction:column;height:100%;padding:1.5rem 1.4rem 1.45rem}
+.when .h3{font-size:1.25rem}
+.when-list{display:grid;gap:.6rem;margin:1.2rem 0 0;padding:0;list-style:none}
+.when-list li{display:flex;align-items:center;gap:.85rem;padding:.75rem .85rem;border-radius:.9rem;background:rgb(255 255 255/.025);box-shadow:inset 0 0 0 1px var(--line);font-size:.9375rem;font-weight:500;line-height:1.4}
+.when-list .itile{width:2rem;height:2rem;border-radius:.6rem}
+.when-list .itile .ti{width:1rem;height:1rem}
+.pb-caps{display:grid;gap:1rem;margin:0}
+@media(min-width:640px){.pb-caps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.pb-caps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pb-caps div{padding:1.15rem 1.25rem 1.3rem;border:1px solid transparent;border-radius:1.15rem;background:var(--glass),var(--glass-tint)}
+.pb-caps dt{display:flex;align-items:center;gap:.45rem;font-size:.8125rem;color:var(--muted)}
+.pb-caps dt .ti{width:1rem;height:1rem}
+.pb-caps dd{margin:.55rem 0 0;font-size:.9375rem;font-weight:500;line-height:1.45}
+.stack-chips{display:flex;flex-wrap:wrap;gap:.3rem}
+.stack-chips span{padding:.12rem .5rem;border-radius:.4rem;box-shadow:inset 0 0 0 1px var(--line-2);font:400 .75rem/1.45 var(--mono);color:var(--fg-2)}
+
+/* ── Contact: one panel, form and direct line side by side ───────────── */
+.c-head{max-width:48rem}
+.c-head .display{font-size:clamp(2.2rem,4.8vw,3.75rem)}
+.c-head .lede{margin-top:1.25rem}
+.c-grid{display:grid;gap:2.5rem;margin-top:2.5rem;padding-top:2.25rem;border-top:1px solid var(--line)}
+@media(min-width:960px){
+  .c-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0}
+  .steps{padding-right:3rem}
+  .c-direct{padding-left:3rem;border-left:1px solid var(--line)}
+}
+.c-label{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;font-size:.875rem;font-weight:600;color:var(--blue-lt)}
+.c-label .ti{width:1rem;height:1rem}
+.step{position:relative;display:grid;grid-template-columns:2rem minmax(0,1fr);gap:1rem;padding-bottom:1.6rem}
+.step:has(+ .step)::before{content:"";position:absolute;left:1rem;top:2.35rem;bottom:.3rem;width:1px;background:linear-gradient(180deg,var(--line-2),var(--line-soft))}
+.num{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:rgb(255 255 255/.05);box-shadow:inset 0 0 0 1px var(--line-2);font-size:.8125rem;font-weight:600;color:var(--fg-2);transition:background-color .25s,box-shadow .25s,color .25s}
+.step:focus-within:not(.done) .num{background:rgb(61 139 255/.16);box-shadow:inset 0 0 0 1px rgb(61 139 255/.6);color:#fff}
+.step .field{margin:0;padding-top:.3rem}
+.steps-foot{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.25rem;margin-left:3rem}
+.steps-foot p{flex:1 1 14rem;font-size:.8125rem;color:var(--muted)}
+@media(max-width:520px){.steps-foot{margin-left:0}}
+.c-direct .direct{margin-top:0}
+@media(max-width:959px){.c-direct{padding-top:2rem;border-top:1px solid var(--line)}}
+
+/* ── Depth: module cards follow the pointer, the hall screen stands in the room ── */
+.kiosk-3d{perspective:1600px}
+.kiosk-tilt{transform:rotateY(-11deg) rotateX(4deg);transform-origin:60% 50%}
+@media(max-width:899px){.kiosk-tilt{transform:none}}
+
+/* External links: the arrow leans out on hover */
+.ft ul a .ti{transition:transform .25s var(--ease),opacity .2s}
+.ft ul a:hover .ti{transform:translate(2px,-2px);opacity:1}
+
+
+/* ══ Final pass ═════════════════════════════════════════════════════════ */
+
+/* Headings arrive word by word (words are wrapped by the script) */
+.sheen[data-split]{background:none;color:var(--fg)}
+.sheen[data-split] .wi{background:linear-gradient(180deg,#fff 45%,rgb(255 255 255/.72));-webkit-background-clip:text;background-clip:text;color:transparent}
+.js [data-split] .wi{display:inline-block;opacity:0;translate:0 .42em;filter:blur(8px)}
+.js [data-split].in .wi{animation:word 1s var(--ease) calc(var(--rd,0s) + var(--i,0) * 48ms) both}
+@keyframes word{to{opacity:1;translate:none;filter:blur(0)}}
+
+/* Section seams draw outwards from the middle */
+.js .sec.ruled::before{transform:translateX(-50%) scaleX(0);transition:transform 1.6s var(--ease)}
+.js .sec.ruled.seam::before{transform:translateX(-50%) scaleX(1)}
+
+/* Head layouts: centred, split, plain */
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .lede{margin-inline:auto}
+.head-split{display:grid;gap:1.25rem}
+@media(min-width:900px){.head-split{grid-template-columns:7fr 5fr;align-items:end;gap:4rem}.head-split .lede{margin-bottom:.4rem}}
+
+/* Navigation: sliding marker for the current section, reading progress */
+.nav{position:relative}
+.nav-links{position:relative;isolation:isolate}
+.nav-ind{position:absolute;left:0;top:50%;z-index:-1;width:0;height:2rem;margin-top:-1rem;border-radius:.6rem;background:rgb(255 255 255/.07);box-shadow:inset 0 0 0 1px rgb(255 255 255/.06);opacity:0;pointer-events:none;transition:transform .5s var(--ease),width .5s var(--ease),opacity .3s}
+.nav-links a.is-active{color:var(--fg)}
+.nav-links a.is-active:hover{background:transparent}
+.nav-prog{position:absolute;left:1.2rem;right:1.2rem;bottom:-1px;height:1px;transform:scaleX(var(--p,0));transform-origin:0 50%;background:linear-gradient(90deg,rgb(61 139 255/0),var(--blue-lt) 55%,var(--indigo));opacity:.75;pointer-events:none}
+
+/* Decision tree: wires draw themselves, answers follow */
+.js .tree .wire{stroke-dasharray:1;stroke-dashoffset:1}
+.js .tree.in .wire{stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease) .35s}
+.js .tree .wire-dot{opacity:0}
+.js .tree.in .wire-dot{opacity:1;transition:opacity .6s ease 1.1s,stroke .3s,fill .3s}
+.js .tree.in .wire-hot{animation:flow .9s linear infinite,fadein .6s ease 1.2s backwards}
+.js .tree.in .leaf{animation:reveal .8s var(--ease) calc(.3s + var(--li,0) * 90ms) backwards}
+.leaf:nth-child(2){--li:1}.leaf:nth-child(3){--li:2}.leaf:nth-child(4){--li:3}
+@keyframes fadein{from{opacity:0}}
+
+/* Guarantees bento: each visual assembles once when it arrives */
+.ed-code p:nth-of-type(2){--l:1}.ed-code p:nth-of-type(3){--l:2}.ed-code p:nth-of-type(4){--l:3}.ed-code p:nth-of-type(5){--l:4}.ed-code p:nth-of-type(6){--l:5}
+.js .vt.a.in .ed-code p{animation:slidein .5s var(--ease) calc(.35s + var(--l,0) * 70ms) backwards}
+.js .vt.a.in .ed-tree li{animation:slidein .5s var(--ease) .75s backwards}
+.js .vt.a.in .ed-hl{animation:fadein .5s ease 1s backwards}
+@keyframes slidein{from{opacity:0;translate:-10px 0}}
+.js .vt.b.in .p17{animation:pl17 .9s var(--ease) .3s backwards}
+.js .vt.b.in .p18{animation:pl18 .9s var(--ease) .45s backwards}
+.js .vt.b.in .p19{animation:pl19 .9s var(--ease) .6s backwards}
+@keyframes pl17{from{transform:translateZ(70px);opacity:0}}
+@keyframes pl18{from{transform:translateZ(110px);opacity:0}}
+@keyframes pl19{from{transform:translateZ(150px);opacity:0}}
+.req p:nth-of-type(2){--r:1}.req p:nth-of-type(3){--r:2}.req p:nth-of-type(4){--r:3}.req p:nth-of-type(5){--r:4}
+.js .vt.c.in .req p{animation:slidein .45s var(--ease) calc(.35s + var(--r,0) * 90ms) backwards}
+.db-link .arc{stroke-dasharray:100}
+.js .vt.d.in .db-link .arc{animation:draw100 1s var(--ease) .4s backwards}
+.js .vt.d.in .db-link .ah{animation:fadein .3s ease 1.3s backwards}
+.js .vt.d.in .db.twin .cyl .ti{animation:fadein .4s ease 1.5s backwards}
+@keyframes draw100{from{stroke-dashoffset:100}}
+.by path{stroke-dasharray:1}
+.js .vt.e.in .by path{animation:drawby 2s var(--ease) .3s backwards}
+@keyframes drawby{from{stroke-dashoffset:1;fill-opacity:0}}
+.js .vt.e.in .pin{animation:pindrop .8s cubic-bezier(.3,1.35,.5,1) 1.5s backwards}
+.js .vt.e.in .spot::before{animation:fadein .4s ease 1.9s backwards}
+@keyframes pindrop{from{transform:rotateX(-90deg) translateY(-2.4rem);opacity:0}}
+
+/* Symptoms: closing call to action inside the bento */
+.symp li.s-cta{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem;padding:1.5rem 1.6rem;background:linear-gradient(100deg,rgb(61 139 255/.1),transparent 55%),var(--glass-tint)}
+.symp li.s-cta::before{display:none}
+.s-cta .sq{font-size:clamp(1.25rem,1.9vw,1.5rem)}
+.s-cta .sa{margin-top:.35rem;max-width:27rem}
+.s-act{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:1rem 1.5rem}
+@media(max-width:759px){.s-act{justify-content:flex-start}}
+.s-act .more{margin-top:0;font-size:.9375rem}
+@media(min-width:760px){
+  .symp li.s-cta{grid-column:1/-1}
+}
+
+/* Founder facts roll in like a counter */
+.facts dd{font-variant-numeric:tabular-nums}
+.odo{display:inline-flex}
+.roll{display:inline-block;height:1.1em;overflow:hidden;vertical-align:top}
+.roll .col{display:flex;flex-direction:column;transition:translate 2s var(--ease) var(--dl,0s)}
+.roll i{height:1.1em;font-style:normal;line-height:1.1}
+.js .facts.in .roll .col{translate:0 calc(var(--n) * -1.1em)}
+
+/* Hall screen switches on once */
+.ks-in{position:relative}
+.js .kiosk-wrap:not(.in) .ks-in{clip-path:inset(50% 0 50% 0)}
+.js .kiosk-wrap.in .ks-in{animation:crt 1.1s var(--ease) .45s backwards}
+@keyframes crt{0%{clip-path:inset(50% 0 50% 0);filter:brightness(2.6)}45%{clip-path:inset(0);filter:brightness(1.5)}100%{clip-path:inset(0);filter:brightness(1)}}
+.ks::before{content:"";position:absolute;left:6%;right:6%;top:50%;z-index:2;height:1px;background:rgb(205 225 255/.9);opacity:0;pointer-events:none}
+.js .kiosk-wrap.in .ks::before{animation:scanon .75s ease .35s}
+@keyframes scanon{0%{opacity:0;transform:scaleX(.15)}30%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+
+/* Modules: product showcases instead of small cards */
+.mrow{display:grid;gap:2rem;align-items:center;margin-top:clamp(3rem,6vw,4.75rem)}
+@media(min-width:1000px){
+  .mrow{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3.75rem}
+  .mrow.flip{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .mrow.flip .show{order:2}
+}
+.show{border:1px solid transparent;border-radius:1.4rem;background:var(--glass),var(--glass-tint)}
+.show-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem .9rem;border-bottom:1px solid var(--line)}
+.show-t{display:flex;align-items:center;gap:.5rem;font-size:.8125rem;font-weight:600}
+.show-t img{width:1.1rem;height:1.1rem;border-radius:.3rem}
+.show-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.2rem .6rem;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:.75rem;color:var(--muted);white-space:nowrap}
+.show-chip .ti{width:.9rem;height:.9rem;color:var(--blue-lt)}
+.shot{position:relative;display:block;width:100%;margin:0;padding:.6rem;border:0;background:none;cursor:zoom-in}
+.shot img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-radius:.85rem;box-shadow:0 0 0 1px var(--line)}
+.shot .plate-hint{right:1.2rem;bottom:1.2rem}
+.shot:hover .plate-hint,.shot:focus-visible .plate-hint,.paper:hover .plate-hint,.paper:focus-visible .plate-hint{opacity:1}
+.desk{display:grid;place-items:center;min-height:24rem;padding:3rem 2.25rem}
+.desk-pat{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background-image:linear-gradient(rgb(255 255 255/.045) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/.045) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 45%,#000 20%,transparent 80%);mask-image:radial-gradient(ellipse 75% 70% at 50% 45%,#000 20%,transparent 80%)}
+.paper{position:relative;display:block;width:min(100%,31rem);margin:0;padding:0;border:0;background:none;cursor:zoom-in;rotate:-2.5deg;filter:drop-shadow(0 30px 34px rgb(0 0 0/.75))}
+.paper img{width:100%;height:auto;border-radius:.3rem}
+.paper .plate-hint{right:.8rem;bottom:.8rem}
+.pin-note{position:absolute;display:inline-flex;align-items:center;gap:.4rem;padding:.32rem .75rem .32rem .5rem;border-radius:999px;background:rgb(8 8 10/.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px var(--line-2),0 12px 26px -12px #000;font-size:.75rem;font-weight:600;color:var(--fg-2);white-space:nowrap}
+.pin-note .ti{width:.9rem;height:.9rem;color:var(--blue-lt)}
+.pin-note.n1{left:5%;top:9%}
+.pin-note.n2{right:5%;bottom:9%}
+.mdet .mod-head{margin-bottom:1.1rem}
+.mtitle{font-size:clamp(1.8rem,2.7vw,2.3rem)}
+.mdet .mod-desc{max-width:30rem;margin-top:.55rem;font-size:1.0625rem;color:var(--fg-2)}
+.feat{display:grid;gap:.65rem;margin:1.4rem 0 0;padding:0;list-style:none}
+.feat li{display:flex;gap:.7rem;font-size:.9375rem;line-height:1.5;color:var(--fg-2)}
+.feat .ti{width:1.1rem;height:1.1rem;margin-top:.15rem;color:var(--blue-lt)}
+.mdet .spec{margin-top:1.4rem}
+@media(max-width:560px){.desk{min-height:0;padding:2.25rem 1rem 3.25rem}.pin-note.n1{top:4%}.pin-note.n2{bottom:4%}.show-chip{display:none}}
+
+/* FAQ: the question column stays in view */
+@media(min-width:900px){.faq-aside{position:sticky;top:7.5rem;align-self:start}}
+.faq-cta{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.9rem 1rem;max-width:24rem;margin-top:2rem;padding:1.15rem 1.2rem;border-radius:1.1rem;border:1px solid transparent;background:var(--glass),var(--glass-tint)}
+.faq-cta p{display:grid;gap:.15rem;font-size:.875rem;line-height:1.45;color:var(--muted)}
+.faq-cta b{font-size:.9375rem;font-weight:600;color:var(--fg)}
+.faq-cta .btn{grid-column:1/-1;justify-self:start}
+
+/* Contact: steps tick off as they are filled, what happens next */
+.num i{font-style:normal}
+.num .ti{display:none;width:.95rem;height:.95rem}
+.step.done .num{background:rgb(74 222 128/.12);box-shadow:inset 0 0 0 1px rgb(74 222 128/.45);color:var(--green)}
+.step.done .num i{display:none}
+.step.done .num .ti{display:block}
+.step.done:has(+ .step)::before{background:linear-gradient(180deg,rgb(74 222 128/.5),var(--line-2))}
+.next{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.next-h{margin-bottom:1rem;font-size:.8125rem;font-weight:600;color:var(--muted)}
+.next ol{position:relative;display:grid;gap:1.1rem;margin:0;padding:0;list-style:none}
+.next ol::before{content:"";position:absolute;left:.8rem;top:.8rem;bottom:.8rem;width:1px;background:linear-gradient(180deg,var(--line-2),var(--line-soft))}
+.next li{position:relative;display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:.85rem}
+.nx{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;background:#050507;box-shadow:inset 0 0 0 1px var(--line-2);font-size:.75rem;font-weight:600;color:var(--fg-2)}
+.next li p{display:grid;gap:.15rem;font-size:.875rem;line-height:1.45;color:var(--muted)}
+.next li b{font-size:.9375rem;font-weight:600;color:var(--fg)}
+.next-note{display:flex;align-items:center;gap:.5rem;margin-top:1.25rem;font-size:.8125rem;color:var(--muted)}
+.next-note .ti{width:.95rem;height:.95rem;color:var(--green)}
+
+/* Partner: the direct line draws itself */
+.link .base{stroke-dasharray:100}
+.js .pb-line.in .link .base{animation:draw100 1s var(--ease) .45s backwards}
+.js .pb-line.in .tag-direct{animation:fadein .4s ease 1.2s backwards}
+
+/* Footer: local time in Amberg, back to the top */
+.ft-bot{align-items:center}
+.ft-clock{display:inline-flex;align-items:center;gap:.4rem}
+.ft-clock .ti{width:.9rem;height:.9rem}
+.ft-clock b{font-weight:600;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.totop{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.totop .ti{width:.9rem;height:.9rem;rotate:-90deg;transition:transform .25s var(--ease)}
+.totop:hover{color:var(--fg)}
+.totop:hover .ti{transform:translateX(2px)}
+
+/* ── Night glass: rim of the contact panel (it clips its overflow, so the ring sits inside) ── */
+.edge-ring{position:absolute;inset:0;z-index:2;padding:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgb(255 255 255/.18),rgb(255 255 255/.06) 30%,rgb(255 255 255/.02));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<!-- Icons: Tabler Icons (MIT), https://tabler.io/icons -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+<symbol id="ti-adjustments-horizontal" viewBox="0 0 24 24"><path d="M12 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 6l8 0"/><path d="M16 6l4 0"/><path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 12l2 0"/><path d="M10 12l10 0"/><path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 18l11 0"/><path d="M19 18l1 0"/></symbol>
+<symbol id="ti-alert-triangle" viewBox="0 0 24 24"><path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0"/><path d="M12 16h.01"/></symbol>
+<symbol id="ti-arrow-right" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+<symbol id="ti-arrow-up-right" viewBox="0 0 24 24"><path d="M17 7l-10 10"/><path d="M8 7l9 0l0 9"/></symbol>
+<symbol id="ti-beach" viewBox="0 0 24 24"><path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0"/><path d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196"/><path d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196"/><path d="M15 9l-3 5.196"/><path d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25"/></symbol>
+<symbol id="ti-braces" viewBox="0 0 24 24"><path d="M7 4a2 2 0 0 0 -2 2v3a2 3 0 0 1 -2 3a2 3 0 0 1 2 3v3a2 2 0 0 0 2 2"/><path d="M17 4a2 2 0 0 1 2 2v3a2 3 0 0 0 2 3a2 3 0 0 0 -2 3v3a2 2 0 0 1 -2 2"/></symbol>
+<symbol id="ti-building-warehouse" viewBox="0 0 24 24"><path d="M3 21v-13l9 -4l9 4v13"/><path d="M13 13h4v8h-10v-6h6"/><path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3"/></symbol>
+<symbol id="ti-calendar-time" viewBox="0 0 24 24"><path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"/><path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496v1.504l1 1"/></symbol>
+<symbol id="ti-calendar-week" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M7 14h.013"/><path d="M10.01 14h.005"/><path d="M13.01 14h.005"/><path d="M16.015 14h.005"/><path d="M13.015 17h.005"/><path d="M7.01 17h.005"/><path d="M10.01 17h.005"/></symbol>
+<symbol id="ti-chart-bar-off" viewBox="0 0 24 24"><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"/><path d="M12 8h2a1 1 0 0 1 1 1v2m0 4v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-10"/><path d="M15 11v-6a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v12m-1 3h-4a1 1 0 0 1 -1 -1v-4"/><path d="M4 20h14"/><path d="M3 3l18 18"/></symbol>
+<symbol id="ti-chart-line" viewBox="0 0 24 24"><path d="M4 19l16 0"/><path d="M4 15l4 -6l4 2l4 -5l4 4"/></symbol>
+<symbol id="ti-check" viewBox="0 0 24 24"><path d="M5 12l5 5l10 -10"/></symbol>
+<symbol id="ti-chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6"/></symbol>
+<symbol id="ti-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
+<symbol id="ti-circle-check" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></symbol>
+<symbol id="ti-clock-hour-4" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 12l3 2"/><path d="M12 7v5"/></symbol>
+<symbol id="ti-cloud-off" viewBox="0 0 24 24"><path d="M9.58 5.548c.24 -.11 .492 -.207 .752 -.286c1.88 -.572 3.956 -.193 5.444 1c1.488 1.19 2.162 3.007 1.77 4.769h.99c1.913 0 3.464 1.56 3.464 3.486c0 .957 -.383 1.824 -1.003 2.454m-2.997 1.033h-11.343c-2.572 -.004 -4.657 -2.011 -4.657 -4.487c0 -2.475 2.085 -4.482 4.657 -4.482c.13 -.582 .37 -1.128 .7 -1.62"/><path d="M3 3l18 18"/></symbol>
+<symbol id="ti-code" viewBox="0 0 24 24"><path d="M7 8l-4 4l4 4"/><path d="M17 8l4 4l-4 4"/><path d="M14 4l-4 16"/></symbol>
+<symbol id="ti-copy" viewBox="0 0 24 24"><path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666"/><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"/></symbol>
+<symbol id="ti-device-tv" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -9"/><path d="M16 3l-4 4l-4 -4"/></symbol>
+<symbol id="ti-download" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></symbol>
+<symbol id="ti-drag-drop" viewBox="0 0 24 24"><path d="M19 11v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"/><path d="M13 13l9 3l-4 2l-2 4l-3 -9"/><path d="M3 3l0 .01"/><path d="M7 3l0 .01"/><path d="M11 3l0 .01"/><path d="M15 3l0 .01"/><path d="M3 7l0 .01"/><path d="M3 11l0 .01"/><path d="M3 15l0 .01"/></symbol>
+<symbol id="ti-file-code" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"/><path d="M10 13l-1 2l1 2"/><path d="M14 13l1 2l-1 2"/></symbol>
+<symbol id="ti-file-invoice" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"/><path d="M9 7l1 0"/><path d="M9 13l6 0"/><path d="M13 17l2 0"/></symbol>
+<symbol id="ti-file-search" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"/><path d="M14 17.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/><path d="M18.5 19.5l2.5 2.5"/></symbol>
+<symbol id="ti-file-text" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"/><path d="M9 9l1 0"/><path d="M9 13l6 0"/><path d="M9 17l6 0"/></symbol>
+<symbol id="ti-folder" viewBox="0 0 24 24"><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"/></symbol>
+<symbol id="ti-folder-open" viewBox="0 0 24 24"><path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2"/></symbol>
+<symbol id="ti-git-branch" viewBox="0 0 24 24"><path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M7 8l0 8"/><path d="M9 18h6a2 2 0 0 0 2 -2v-5"/><path d="M14 14l3 -3l3 3"/></symbol>
+<symbol id="ti-hand-click" viewBox="0 0 24 24"><path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"/><path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5"/><path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5"/><path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7l-.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47"/><path d="M5 3l-1 -1"/><path d="M4 7h-1"/><path d="M14 3l1 -1"/><path d="M15 6h1"/></symbol>
+<symbol id="ti-help-hexagon" viewBox="0 0 24 24"><path d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033"/><path d="M12 16v.01"/><path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></symbol>
+<symbol id="ti-keyboard" viewBox="0 0 24 24"><path d="M2 8a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2l0 -8"/><path d="M6 10l0 .01"/><path d="M10 10l0 .01"/><path d="M14 10l0 .01"/><path d="M18 10l0 .01"/><path d="M6 14l0 .01"/><path d="M18 14l0 .01"/><path d="M10 14l4 .01"/></symbol>
+<symbol id="ti-language" viewBox="0 0 24 24"><path d="M9 6.371c0 4.418 -2.239 6.629 -5 6.629"/><path d="M4 6.371h7"/><path d="M5 9c0 2.144 2.252 3.908 6 4"/><path d="M12 20l4 -9l4 9"/><path d="M19.1 18h-6.2"/><path d="M6.694 3l.793 .582"/></symbol>
+<symbol id="ti-lock" viewBox="0 0 24 24"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/></symbol>
+<symbol id="ti-mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10"/><path d="M3 7l9 6l9 -6"/></symbol>
+<symbol id="ti-map-pin" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0"/></symbol>
+<symbol id="ti-maximize" viewBox="0 0 24 24"><path d="M4 8v-2a2 2 0 0 1 2 -2h2"/><path d="M4 16v2a2 2 0 0 0 2 2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v2"/><path d="M16 20h2a2 2 0 0 0 2 -2v-2"/></symbol>
+<symbol id="ti-menu-2" viewBox="0 0 24 24"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></symbol>
+<symbol id="ti-messages" viewBox="0 0 24 24"><path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"/><path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"/></symbol>
+<symbol id="ti-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008"/></symbol>
+<symbol id="ti-packages" viewBox="0 0 24 24"><path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3l0 -5.5"/><path d="M2 13.5v5.5l5 3"/><path d="M7 16.545l5 -3.03"/><path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3l0 -5.5"/><path d="M12 19l5 3"/><path d="M17 16.5l5 -3"/><path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5"/><path d="M7 5.03v5.455"/><path d="M12 8l5 -3"/></symbol>
+<symbol id="ti-pencil" viewBox="0 0 24 24"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></symbol>
+<symbol id="ti-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></symbol>
+<symbol id="ti-photo" viewBox="0 0 24 24"><path d="M15 8h.01"/><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12"/><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"/><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"/></symbol>
+<symbol id="ti-plug-connected" viewBox="0 0 24 24"><path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5"/><path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5"/><path d="M3 21l2.5 -2.5"/><path d="M18.5 5.5l2.5 -2.5"/><path d="M10 11l-2 2"/><path d="M13 14l-2 2"/></symbol>
+<symbol id="ti-plus" viewBox="0 0 24 24"><path d="M12 5l0 14"/><path d="M5 12l14 0"/></symbol>
+<symbol id="ti-puzzle" viewBox="0 0 24 24"><path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"/></symbol>
+<symbol id="ti-receipt-euro" viewBox="0 0 24 24"><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2"/><path d="M15 7.8c-.523 -.502 -1.172 -.8 -1.875 -.8c-1.727 0 -3.125 1.791 -3.125 4s1.398 4 3.125 4c.703 0 1.352 -.298 1.874 -.8"/><path d="M9 11h4"/></symbol>
+<symbol id="ti-search" viewBox="0 0 24 24"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></symbol>
+<symbol id="ti-send" viewBox="0 0 24 24"><path d="M10 14l11 -11"/><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"/></symbol>
+<symbol id="ti-settings" viewBox="0 0 24 24"><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></symbol>
+<symbol id="ti-shield-check" viewBox="0 0 24 24"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"/><path d="M15 19l2 2l4 -4"/></symbol>
+<symbol id="ti-stack-2" viewBox="0 0 24 24"><path d="M12 4l-8 4l8 4l8 -4l-8 -4"/><path d="M4 12l8 4l8 -4"/><path d="M4 16l8 4l8 -4"/></symbol>
+<symbol id="ti-sun" viewBox="0 0 24 24"><path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/></symbol>
+<symbol id="ti-sunset-2" viewBox="0 0 24 24"><path d="M3 13h1"/><path d="M20 13h1"/><path d="M5.6 6.6l.7 .7"/><path d="M18.4 6.6l-.7 .7"/><path d="M8 13a4 4 0 1 1 8 0"/><path d="M3 17h18"/><path d="M7 20h5"/><path d="M16 20h1"/><path d="M12 5v-1"/></symbol>
+<symbol id="ti-table" viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14"/><path d="M3 10h18"/><path d="M10 3v18"/></symbol>
+<symbol id="ti-typography" viewBox="0 0 24 24"><path d="M4 20l3 0"/><path d="M14 20l7 0"/><path d="M6.9 15l6.9 0"/><path d="M10.2 6.3l5.8 13.7"/><path d="M5 20l6 -16l2 0l7 16"/></symbol>
+<symbol id="ti-user" viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></symbol>
+<symbol id="ti-user-question" viewBox="0 0 24 24"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h3.5"/><path d="M19 22v.01"/><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"/></symbol>
+<symbol id="ti-users" viewBox="0 0 24 24"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></symbol>
+<symbol id="ti-versions" viewBox="0 0 24 24"><path d="M10 7a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2l0 -10"/><path d="M7 7l0 10"/><path d="M4 8l0 8"/></symbol>
+<symbol id="ti-x" viewBox="0 0 24 24"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></symbol>
+</svg>
+
+<header class="hd" id="hd">
+  <nav class="nav" aria-label="Hauptnavigation">
+    <span class="nav-prog" aria-hidden="true"></span>
+    <a href="/" class="brand"><img src="assets/img/icon-shift.png" alt="" width="26" height="26">Turbo Solutions</a>
+    <div class="nav-links">
+      <span class="nav-ind" aria-hidden="true"></span>
+      <a href="/leistungen">Leistungen</a>
+      <a href="#produkte">Module</a>
+      <a href="#partner">Für Partner</a>
+      <a href="#faq">Fragen</a>
+    </div>
+    <div class="lang" role="group" aria-label="Sprache">
+      <a href="/" hreflang="de" aria-current="true">DE</a><a href="/en/" hreflang="en" aria-current="false">EN</a>
+    </div>
+    <a class="btn btn-solid btn-sm nav-cta" href="#kontakt">Projekt besprechen</a>
+    <button id="mnb" class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mn">
+      <svg class="ti" aria-hidden="true"><use href="#ti-menu-2"/></svg>
+    </button>
+  </nav>
+  <div id="mn" class="menu" hidden>
+    <nav aria-label="Menü">
+      <a class="menu-link" href="/leistungen"><svg class="ti" aria-hidden="true"><use href="#ti-adjustments-horizontal"/></svg>Leistungen</a>
+      <a class="menu-link" href="#produkte"><svg class="ti" aria-hidden="true"><use href="#ti-packages"/></svg>Module</a>
+      <a class="menu-link" href="#partner"><svg class="ti" aria-hidden="true"><use href="#ti-users"/></svg>Für Partner</a>
+      <a class="menu-link" href="#faq"><svg class="ti" aria-hidden="true"><use href="#ti-messages"/></svg>Fragen</a>
+    </nav>
+    <div class="menu-foot">
+      <div class="lang" role="group" aria-label="Sprache">
+        <a href="/" hreflang="de" aria-current="true">DE</a><a href="/en/" hreflang="en" aria-current="false">EN</a>
+      </div>
+      <a class="btn btn-solid btn-sm" href="#kontakt">Projekt besprechen</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- Hero -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-bg" aria-hidden="true"><div class="halo"></div><div class="beam"></div></div>
+  <div class="shell">
+    <a href="#produkte" class="pill btn-glass rise" style="--d:.05s">
+      <span class="pill-tag">Modul</span>
+      <span>Shift Planning Turbo für Odoo 17 bis 19</span>
+      <span class="pill-go"><svg class="ti" aria-hidden="true"><use href="#ti-arrow-right"/></svg></span>
+    </a>
+
+    <h1 id="hero-h" class="display sheen rise" style="--d:.12s">Unternehmens&shy;software,<br> die zu Ihren Abläufen passt.</h1>
+
+    <p class="lede rise" style="--d:.22s">Wir entwickeln, passen an und betreuen Unternehmenssoftware für Firmen, deren Standardsystem nicht mehr zu ihren Prozessen passt.</p>
+    <p class="note rise" style="--d:.26s">Odoo ist eine unserer Kernplattformen, mit Erfahrung über Odoo 17, 18 und 19 hinweg.</p>
+
+    <div class="cta rise" style="--d:.32s">
+      <a class="btn btn-solid" href="#kontakt">Projekt besprechen<svg class="ti go" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+      <a class="btn btn-glass" href="/leistungen">Unsere Leistungen</a>
+    </div>
+
+    <!-- Interactive planner preview -->
+    <div class="stage rise" id="stage" style="--d:.45s">
+      <div class="stage-glow" aria-hidden="true"></div>
+      <div class="frame" id="mkFrame">
+        <div class="frame-edge" aria-hidden="true"></div>
+        <div class="frame-scroll">
+          <div class="mock" role="group" aria-label="Interaktive Vorschau: Wochenplan in Shift Planning Turbo">
+            <div class="mk-bar">
+              <span class="mk-app"><img src="assets/img/icon-shift.png" alt="" width="22" height="22">Schichtplanung</span>
+              <span class="mk-week">
+                <span class="nav-arr" aria-hidden="true"><svg class="ti"><use href="#ti-chevron-left"/></svg></span>
+                <span class="mk-kw" id="mkKw">KW 44</span><span id="mkRange">26. Okt. bis 1. Nov.</span>
+                <span class="nav-arr" aria-hidden="true"><svg class="ti"><use href="#ti-chevron-right"/></svg></span>
+              </span>
+              <span class="mk-search" aria-hidden="true"><svg class="ti"><use href="#ti-search"/></svg>Mitarbeiter suchen<kbd>Strg K</kbd></span>
+              <span class="mk-seg" aria-hidden="true"><span class="on">Woche</span><span>Monat</span><span>Halle</span></span>
+            </div>
+            <div class="mk-kpis">
+              <div class="kpi">
+                <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-clock-hour-4"/></svg></span>
+                <span class="kpi-b">
+                  <span class="kpi-l">Geplante Stunden</span>
+                  <span class="kpi-v"><span id="kpiHours">200</span><small id="kpiTarget">von 208 h</small></span>
+                  <span class="kpi-bar"><i id="kpiBar" style="width:96%"></i></span>
+                </span>
+              </div>
+              <div class="kpi">
+                <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-beach"/></svg></span>
+                <span class="kpi-b">
+                  <span class="kpi-l">Abwesenheiten</span>
+                  <span class="kpi-v"><span id="kpiAbs">2</span><small>Tage diese Woche</small></span>
+                </span>
+              </div>
+              <button type="button" class="kpi kpi-conf" id="kpiConf" data-n="1">
+                <span class="itile" aria-hidden="true"><svg class="ti"><use id="kpiConfIc" href="#ti-alert-triangle"/></svg></span>
+                <span class="kpi-b">
+                  <span class="kpi-l">Konflikte</span>
+                  <span class="kpi-v"><span id="kpiConfN">1</span><small id="kpiConfS">Ruhezeit unter 11 h</small></span>
+                </span>
+                <span class="kpi-tag" id="kpiConfTag">Anzeigen</span>
+              </button>
+            </div>
+            <div class="mk-grid" id="mkGrid" aria-describedby="mkHelp">
+              <noscript><img src="assets/img/planner.webp" alt="Wochenraster der Schichtplanung in Odoo" width="1600" height="777"></noscript>
+            </div>
+            <div class="mk-foot">
+              <span class="lg" style="--c:var(--early)"><svg class="ti" aria-hidden="true"><use href="#ti-sun"/></svg>Früh 06–14</span>
+              <span class="lg" style="--c:var(--late)"><svg class="ti" aria-hidden="true"><use href="#ti-sunset-2"/></svg>Spät 14–22</span>
+              <span class="lg" style="--c:var(--night)"><svg class="ti" aria-hidden="true"><use href="#ti-moon"/></svg>Nacht 22–06</span>
+              <span class="lg" style="--c:var(--muted)"><svg class="ti" aria-hidden="true"><use href="#ti-beach"/></svg>Abwesend</span>
+              <span class="mk-rule"><svg class="ti" aria-hidden="true"><use href="#ti-alert-triangle"/></svg>Weniger als 11 Stunden Ruhezeit gelten als Konflikt.</span>
+            </div>
+          </div>
+        </div>
+        <svg class="cursor" id="mkCursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5v17.2l4.6-4.3 2.9 6.6 3-1.3-2.9-6.5h6.3z" fill="#fff" stroke="#000" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <div class="mk-toast" id="mkToast" role="status" aria-live="polite"></div>
+      </div>
+      <p id="mkHelp" class="demo-cap">
+        <span>Nachgebaute Vorschau von Shift Planning Turbo. Probieren Sie es aus:</span>
+        <span class="hint"><svg class="ti" aria-hidden="true"><use href="#ti-drag-drop"/></svg>Schicht ziehen</span>
+        <span class="hint"><svg class="ti" aria-hidden="true"><use href="#ti-keyboard"/></svg>oder Pfeiltasten</span>
+        <span class="hint swipe"><svg class="ti" aria-hidden="true"><use href="#ti-hand-click"/></svg>seitlich wischen</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Guarantees bento -->
+<section class="sec" id="grundsaetze" aria-labelledby="gh">
+  <div class="shell">
+    <div class="sec-head center">
+      <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-shield-check"/></svg>Was in jedem Projekt gilt</p>
+      <h2 class="h2 sheen" id="gh">Worauf Sie sich verlassen können.</h2>
+    </div>
+    <div class="vb-wrap">
+      <div class="vb">
+
+        <article class="vt a glow" data-glow>
+          <div class="vt-vis vis-code" aria-hidden="true">
+            <div class="ed">
+              <div class="ed-bar">
+                <span class="ed-tab on"><svg class="ti"><use href="#ti-file-code"/></svg>__manifest__.py</span>
+                <span class="ed-tab"><svg class="ti"><use href="#ti-file-text"/></svg>i18n/de.po</span>
+                <span class="ed-dl"><svg class="ti"><use href="#ti-download"/></svg>Ihr Quellcode</span>
+              </div>
+              <div class="ed-main">
+                <div class="ed-code"><i class="ed-hl"></i><p><span class="ln">1</span><span class="pu">{</span></p><p><span class="ln">2</span>    <span class="ky">'name'</span><span class="pu">:</span> <span class="st">'Shift Planning Turbo'</span><span class="pu">,</span></p><p><span class="ln">3</span>    <span class="ky">'depends'</span><span class="pu">: [</span><span class="st">'hr'</span><span class="pu">,</span> <span class="st">'hr_holidays'</span><span class="pu">,</span> <span class="st">'mail'</span><span class="pu">],</span></p><p><span class="ln">4</span>    <span class="ky">'author'</span><span class="pu">:</span> <span class="st">'Turbo Solutions'</span><span class="pu">,</span></p><p><span class="ln">5</span>    <span class="ky">'installable'</span><span class="pu">:</span> <span class="bo">True</span><span class="pu">,</span></p><p><span class="ln">6</span><span class="pu">}</span></p></div>
+                <ul class="ed-tree">
+                  <li class="dir"><svg class="ti"><use href="#ti-folder-open"/></svg>dienstplan_lager</li>
+                  <li class="on"><svg class="ti"><use href="#ti-file-code"/></svg>__manifest__.py</li>
+                  <li><svg class="ti"><use href="#ti-folder"/></svg>models</li>
+                  <li><svg class="ti"><use href="#ti-folder"/></svg>views</li>
+                  <li><svg class="ti"><use href="#ti-folder"/></svg>static</li>
+                  <li><svg class="ti"><use href="#ti-folder"/></svg>i18n<em>21</em></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="vt-body">
+            <h3 class="h3">Quellcode inklusive</h3>
+            <p>Kein Lock-in, kein Abo auf den Code. Sie sollen uns weiterbeauftragen, weil es passt – nicht, weil Sie keine Wahl haben.</p>
+          </div>
+        </article>
+
+        <article class="vt b glow" data-glow>
+          <div class="vt-vis vis-stack" aria-hidden="true">
+            <div class="stack">
+              <div class="pl3 p17"><b>17</b></div>
+              <div class="pl3 p18"><b>18</b></div>
+              <div class="pl3 p19"><b>19</b><span class="pl-mods"><i><svg class="ti"><use href="#ti-calendar-week"/></svg></i><i><svg class="ti"><use href="#ti-packages"/></svg></i></span></div>
+            </div>
+          </div>
+          <div class="vt-body">
+            <h3 class="h3">Odoo 17, 18 und 19</h3>
+            <p>Über drei Hauptversionen gepflegt. Migrationen inklusive eigener Module.</p>
+          </div>
+        </article>
+
+        <article class="vt c glow" data-glow>
+          <div class="vt-vis vis-req" aria-hidden="true">
+            <div class="req">
+              <div class="req-h"><span>Abruf</span><span>Quelle</span></div>
+              <p><svg class="ti"><use href="#ti-typography"/></svg>Schriften<span>eigener Server</span><svg class="ti ok"><use href="#ti-check"/></svg></p>
+              <p><svg class="ti"><use href="#ti-braces"/></svg>Skripte<span>eigener Server</span><svg class="ti ok"><use href="#ti-check"/></svg></p>
+              <p><svg class="ti"><use href="#ti-photo"/></svg>Bilder<span>eigener Server</span><svg class="ti ok"><use href="#ti-check"/></svg></p>
+              <p class="off"><svg class="ti"><use href="#ti-cloud-off"/></svg>CDN<span class="zero">0 Aufrufe</span></p>
+              <p class="off"><svg class="ti"><use href="#ti-chart-bar-off"/></svg>Telemetrie<span class="zero">0 Aufrufe</span></p>
+              <i class="req-scan"></i>
+            </div>
+          </div>
+          <div class="vt-body">
+            <h3 class="h3">Keine externen Aufrufe</h3>
+            <p>Kein CDN, keine Telemetrie, Schriften vom eigenen Server.</p>
+          </div>
+        </article>
+
+        <article class="vt d glow" data-glow>
+          <div class="vt-vis vis-db" aria-hidden="true">
+            <div class="db"><span class="cyl"></span><b>Live</b><small>läuft weiter</small></div>
+            <svg class="db-link" viewBox="0 0 88 40"><path class="arc" pathLength="100" d="M6 34C26 6 62 6 82 34"/><path class="ah" d="M80.9 26.1 82 34l-7.1-3.5"/><path class="pulse" pathLength="100" d="M6 34C26 6 62 6 82 34"/></svg>
+            <div class="db twin"><span class="cyl"><svg class="ti"><use href="#ti-check"/></svg></span><b>Kopie</b><small>Update getestet</small></div>
+          </div>
+          <div class="vt-body">
+            <h3 class="h3">Erst auf einer Kopie</h3>
+            <p>Updates und Migrationen werden auf einer Kopie getestet, bevor irgendetwas live geht.</p>
+          </div>
+        </article>
+
+        <article class="vt e glow" data-glow>
+          <div class="vt-vis vis-map" aria-hidden="true">
+            <div class="plane">
+              <div class="plane-dots"></div>
+              <svg class="by" viewBox="0 0 200 206.9" preserveAspectRatio="none"><path pathLength="1" d="M129.1 15.6L128.1 15.6L129.5 18.0L128.2 20.1L132.2 23.9L132.3 28.0L132.7 28.9L134.5 30.3L135.1 32.6L142.1 36.4L143.6 36.6L144.3 37.2L144.0 39.7L146.6 41.4L144.9 46.2L144.0 46.0L143.6 49.2L141.3 50.6L140.8 51.5L142.3 54.2L145.4 56.1L145.7 59.3L147.5 60.8L149.0 65.4L150.7 66.2L151.5 71.2L155.1 73.6L157.1 77.3L160.3 78.0L161.1 77.9L160.9 77.1L161.5 76.9L163.8 77.7L166.2 79.7L166.7 81.4L172.4 88.5L173.6 90.8L178.6 92.3L181.6 95.8L182.1 98.7L183.9 100.8L186.2 102.2L187.6 100.1L191.4 101.6L192.6 104.9L196.2 106.6L200.0 112.9L198.6 116.1L200.0 117.4L199.3 118.6L199.1 123.5L197.9 125.7L196.6 125.9L195.9 128.3L192.0 125.6L187.8 124.3L185.0 125.0L184.4 125.8L185.2 128.6L184.4 131.0L184.3 134.0L183.0 137.4L177.6 141.8L171.9 142.8L167.6 144.5L163.5 147.9L160.6 148.7L158.9 151.0L155.5 154.0L156.3 157.0L159.2 160.1L160.5 163.4L163.4 165.8L165.9 170.7L161.8 178.5L162.5 179.2L164.8 179.6L167.1 179.1L169.2 182.5L169.2 184.8L167.8 187.2L167.4 189.9L167.8 193.0L166.3 194.7L165.0 194.0L163.4 194.2L159.2 190.2L157.1 189.1L157.4 186.1L158.5 185.5L156.0 183.1L156.4 182.0L151.9 181.5L149.7 182.3L147.2 184.3L145.4 184.4L143.3 182.7L142.5 180.5L139.5 181.1L137.1 180.6L134.8 181.3L134.2 180.2L134.9 177.9L132.2 179.6L133.4 181.7L133.5 183.4L132.1 185.9L122.3 185.6L118.8 186.3L117.5 187.8L109.2 186.9L108.0 188.1L106.4 191.7L103.5 192.4L100.7 192.1L98.7 194.4L99.7 194.9L99.5 196.0L96.2 196.6L93.4 199.2L92.4 199.1L92.5 197.4L91.6 197.0L87.1 199.5L82.8 199.4L81.8 198.2L81.9 196.8L79.9 194.5L77.8 193.5L77.5 193.0L79.2 191.6L77.8 190.6L73.7 191.7L72.9 190.7L66.4 188.6L64.5 190.6L62.2 190.5L61.0 189.6L61.2 187.5L60.0 187.7L59.4 187.9L60.1 189.9L59.6 193.0L60.8 194.2L61.0 196.4L60.0 199.1L57.6 200.9L54.9 205.0L52.2 206.5L48.9 206.9L49.3 205.7L50.2 205.2L50.9 200.5L50.2 200.1L45.7 201.4L44.5 198.5L45.4 197.7L45.3 196.3L43.2 193.3L42.0 194.0L41.6 193.7L40.1 190.0L38.9 190.5L36.5 189.9L35.4 190.3L34.6 189.9L34.4 187.7L33.3 187.0L32.1 187.4L30.1 190.5L28.9 191.1L23.9 190.5L26.4 186.9L29.1 185.5L30.5 185.9L36.7 181.5L40.4 182.5L44.5 181.2L45.4 183.1L46.0 181.3L47.5 181.4L47.1 176.0L45.6 174.3L47.6 172.6L46.6 169.9L45.8 169.5L46.8 165.2L45.8 163.2L47.7 158.9L48.0 155.2L44.5 141.9L41.5 137.1L44.1 133.6L44.0 132.8L44.9 131.5L47.7 130.4L48.6 131.8L52.6 129.3L53.4 127.9L55.5 127.6L55.7 124.7L55.1 123.1L56.0 121.9L54.1 120.4L53.4 119.0L54.4 116.9L55.5 117.7L56.8 117.8L57.7 119.3L60.1 116.8L60.6 117.1L60.4 119.1L62.7 117.1L61.8 115.0L60.5 114.5L60.1 113.6L61.3 108.9L60.8 107.7L61.1 104.6L60.7 104.1L61.6 103.2L57.0 96.2L53.6 95.1L53.1 92.5L51.8 91.8L52.8 91.3L53.2 89.0L52.3 88.1L51.3 88.5L48.4 85.4L49.0 84.9L47.5 81.4L48.9 81.3L48.4 79.4L48.7 78.3L47.3 77.2L47.3 75.0L48.1 74.1L49.4 74.2L48.1 71.0L46.9 70.4L47.7 68.5L47.3 67.3L47.6 66.1L46.4 65.6L46.5 64.5L45.8 64.0L44.7 65.1L45.0 66.2L43.4 67.9L39.7 68.0L39.4 63.6L38.7 62.9L38.7 61.8L37.1 63.0L36.7 64.0L35.6 63.8L37.4 59.8L35.5 57.4L35.4 54.9L33.8 52.9L31.0 55.0L30.1 52.9L29.0 54.8L27.9 55.0L27.0 54.3L27.7 52.4L27.8 49.0L25.8 49.8L20.5 48.2L15.0 49.0L13.9 50.1L13.9 52.2L16.1 52.9L16.2 54.3L17.4 53.1L18.5 53.5L18.4 57.3L17.7 58.0L16.5 57.3L13.1 58.4L12.9 59.9L11.7 61.9L5.5 62.1L4.0 59.8L5.6 58.0L5.1 55.1L6.5 54.4L7.1 51.5L5.9 50.3L6.8 48.7L5.1 47.9L4.7 45.2L4.0 46.0L3.5 45.4L2.0 40.9L2.1 36.3L3.2 36.5L2.7 34.6L1.9 32.3L0.0 32.1L1.2 31.2L1.8 28.9L5.5 27.5L7.4 28.4L7.1 29.2L8.7 27.8L9.0 26.8L10.4 26.3L14.6 26.6L16.6 27.6L17.8 29.6L19.4 29.6L21.9 28.6L22.8 24.9L21.6 24.1L22.0 20.6L25.7 21.3L28.3 20.6L28.8 18.1L31.9 16.2L31.7 13.6L33.2 9.3L34.1 9.0L35.2 10.2L36.5 10.3L41.5 7.9L44.6 2.9L47.5 0.0L47.7 0.9L50.4 0.9L51.9 3.2L55.8 4.6L56.4 6.5L58.8 8.8L58.9 10.4L60.9 10.3L62.9 13.2L65.1 12.8L66.7 14.9L67.5 20.9L72.1 22.4L72.8 19.8L77.2 19.9L77.0 18.4L71.8 15.1L72.1 12.9L73.6 12.9L74.9 11.1L78.4 10.6L79.3 11.3L81.3 11.0L83.1 13.4L83.5 12.5L85.7 13.5L88.3 12.4L90.1 14.7L89.2 15.9L89.5 16.4L91.6 18.3L92.2 17.5L94.2 18.1L94.3 15.2L95.2 12.8L93.9 5.7L96.7 4.4L97.9 2.8L101.3 3.1L101.7 4.1L101.0 4.8L101.0 7.5L103.3 8.5L103.7 10.4L105.3 11.5L106.6 11.3L107.2 10.6L109.3 11.1L116.0 9.3L117.9 10.8L122.1 9.2L124.2 11.2L124.5 13.4L129.1 15.6Z"/></svg>
+              <div class="spot" style="left:59.62%;top:34.02%"><i class="ring"></i><i class="ring r2"></i><div class="pin"><span class="pin-head"></span><span class="pin-stick"></span></div></div>
+            </div>
+            <p class="map-l"><b>Amberg, Oberpfalz</b><span class="mono">49.4429° N, 11.8626° E</span></p>
+          </div>
+          <div class="vt-body">
+            <h3 class="h3">Sitz in Bayern</h3>
+            <p>Deutsche Rechnung, Antwort in der Regel am nächsten Werktag.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="sec ruled" id="ansatz" aria-labelledby="ph">
+  <div class="shell">
+    <div class="split">
+      <div>
+        <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-git-branch"/></svg>Das eigentliche Problem</p>
+        <h2 class="h2 sheen" id="ph">Ihr Geschäftsprozess muss sich nicht der Software anpassen.</h2>
+      </div>
+      <div class="prose">
+        <p>Die meisten Odoo-Projekte beginnen mit derselben Frage: Kann der Standard das? Lautet die Antwort ja, wird konfiguriert. Lautet sie nein, passen wir an, bauen etwas dazu, binden ein anderes System an – oder sagen Ihnen, dass eine andere Lösung besser passt.</p>
+        <p>Sie müssen nicht wissen, ob Sie ein Modul, eine Anpassung oder eine Schnittstelle brauchen. Beschreiben Sie, was anders laufen soll. Die technische Einordnung ist unsere Aufgabe.</p>
+      </div>
+    </div>
+
+    <div class="tree" id="tree">
+      <svg class="wires" id="wires" aria-hidden="true"></svg>
+      <div class="root" id="treeRoot">
+        <span class="itile blue" aria-hidden="true"><svg class="ti"><use href="#ti-help-hexagon"/></svg></span>
+        <div>
+          <h3 class="h3">Kann der Standard das?</h3>
+          <p>Erste Frage in jedem Projekt. Oft lautet die Antwort ja – dann sagen wir das auch.</p>
+        </div>
+      </div>
+      <ul class="leaves" id="leaves">
+        <li class="leaf on">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-settings"/></svg></span>
+          <p class="if">Wenn ja</p>
+          <h3 class="h3">Konfigurieren</h3>
+          <p class="d">Die günstigste Lösung. Kein Code, keine Abhängigkeit, kein Migrationsrisiko.</p>
+        </li>
+        <li class="leaf">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-adjustments-horizontal"/></svg></span>
+          <p class="if">Wenn nein</p>
+          <h3 class="h3">Anpassen</h3>
+          <p class="d">Ansichten, Reports, Berechnungen. Sauber vom Kern getrennt.</p>
+        </li>
+        <li class="leaf">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-puzzle"/></svg></span>
+          <p class="if">Wenn es sich wiederholt</p>
+          <h3 class="h3">Bauen</h3>
+          <p class="d">Ein eigenes Modul, mit Übersetzung, Rechten und Dokumentation.</p>
+        </li>
+        <li class="leaf">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-plug-connected"/></svg></span>
+          <p class="if">Wenn Daten woanders liegen</p>
+          <h3 class="h3">Verbinden</h3>
+          <p class="d">Schnittstellen und Automatisierung statt doppelter Erfassung.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Symptoms -->
+<section class="sec ruled" id="leistungen" aria-labelledby="lh">
+  <div class="shell">
+    <div class="head-split">
+      <div>
+        <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-messages"/></svg>Kommt Ihnen das bekannt vor?</p>
+        <h2 class="h2 sheen" id="lh">Sie müssen nicht wissen, wie die Lösung heißt.</h2>
+      </div>
+      <p class="lede">Die meisten Anfragen beginnen nicht mit einer Anforderung, sondern mit einem Satz wie einem dieser. Erkennen Sie einen davon wieder, haben wir schon genug für ein erstes Gespräch.</p>
+    </div>
+    <ul class="symp">
+      <li class="glow" data-glow>
+        <div class="vg vg-sheet" aria-hidden="true"><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="h"></i><i class="f" style="--w:70%"></i><i></i><i class="f" style="--w:50%"></i><i></i><i class="f" style="--w:80%"></i><i></i><i class="f" style="--w:60%"></i><i class="x"><svg class="ti"><use href="#ti-pencil"/></svg></i><i class="f" style="--w:40%"></i><i></i><i class="f" style="--w:30%"></i><i></i><i></i><i class="f" style="--w:65%"></i><i></i></div>
+        <p class="sq">„Wir planen in Excel und korrigieren auf Zuruf.“</p>
+        <p class="sa">Meistens ein eigenes Modul. Genau daraus ist unser Schichtplaner entstanden.</p>
+        <span class="tag"><svg class="ti" aria-hidden="true"><use href="#ti-puzzle"/></svg>Bauen</span>
+      </li>
+      <li class="glow" data-glow>
+        <div class="vg vg-dup" aria-hidden="true"><div class="fld-st"><div class="fld"><small>Lager</small><b>240 Stk</b></div><div class="fld"><small>Buchhaltung</small><b>240 Stk</b></div></div><span class="dup"><svg class="ti"><use href="#ti-copy"/></svg>2× erfasst</span></div>
+        <p class="sq">„Dieselben Daten werden zweimal getippt – einmal im Lager, einmal in der Buchhaltung.“</p>
+        <p class="sa">Meistens eine Schnittstelle. Manchmal reicht eine Automatisierung im vorhandenen System.</p>
+        <span class="tag"><svg class="ti" aria-hidden="true"><use href="#ti-plug-connected"/></svg>Verbinden</span>
+      </li>
+      <li class="glow" data-glow>
+        <div class="vg vg-doc" aria-hidden="true"><div class="doc"><i class="t"></i><i style="--w:90%"></i><i style="--w:75%"></i><i style="--w:85%"></i><i style="--w:50%"></i><span class="sum"></span></div><div class="fmt"><span>XRechnung</span><span>ZUGFeRD</span></div></div>
+        <p class="sq">„Ab Januar müssen wir E‑Rechnungen versenden. Niemand weiß, ob unser System das kann.“</p>
+        <p class="sa">Oft kann der Standard das bereits. Wir prüfen es und richten es ein, statt etwas zu verkaufen.</p>
+        <span class="tag"><svg class="ti" aria-hidden="true"><use href="#ti-settings"/></svg>Konfigurieren</span>
+      </li>
+      <li class="glow" data-glow>
+        <div class="vg vg-legacy" aria-hidden="true"><div class="leg-code"><i style="--w:55%"></i><span class="cm"># läuft. nicht anfassen.</span><i style="--w:80%"></i><i style="--w:40%"></i></div><span class="anon"><svg class="ti"><use href="#ti-user-question"/></svg>Autor unbekannt</span></div>
+        <p class="sq">„Ein Kollege hat das vor Jahren gebaut. Er ist weg, es läuft noch, keiner fasst es an.“</p>
+        <p class="sa">Erst lesen, dann entscheiden: dokumentieren, ablösen oder weiterpflegen.</p>
+        <span class="tag"><svg class="ti" aria-hidden="true"><use href="#ti-file-search"/></svg>Bestand prüfen</span>
+      </li>
+      <li class="glow" data-glow>
+        <div class="vg vg-ver" aria-hidden="true"><span class="v cur">16</span><span class="sep"></span><span class="lk"><svg class="ti"><use href="#ti-lock"/></svg></span><span class="sep"></span><span class="v">17</span><span class="v">18</span><span class="v">19</span></div>
+        <p class="sq">„Wir hängen auf einer alten Odoo-Version, weil die Eigenentwicklungen das Update blockieren.“</p>
+        <p class="sa">Migration inklusive Eigenentwicklungen, getestet auf einer Kopie, bevor irgendetwas live geht.</p>
+        <span class="tag"><svg class="ti" aria-hidden="true"><use href="#ti-versions"/></svg>Migrieren</span>
+      </li>
+      <li class="s-cta glow" data-glow>
+        <div>
+          <p class="sq">Ihr Satz ist nicht dabei?</p>
+          <p class="sa">Beschreiben Sie, was anders laufen soll. Die technische Einordnung ist unsere Aufgabe.</p>
+        </div>
+        <div class="s-act">
+          <a class="btn btn-solid btn-sm" href="#kontakt">Ablauf beschreiben<svg class="ti go" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+          <a class="more" href="/leistungen">Was daraus werden kann, im Detail<svg class="ti" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Origin story -->
+<section class="sec ruled" aria-labelledby="hth">
+  <div class="shell">
+    <div class="split even">
+      <div>
+        <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-building-warehouse"/></svg>Warum wir den Ablauf verstehen</p>
+        <h2 class="h2 sheen" id="hth">Den Schichtplaner habe ich gebaut, weil ich das Problem selbst erlebt habe.</h2>
+        <div class="prose" style="margin-top:1.75rem">
+          <p>Vor Turbo Solutions war ich in einem Betrieb angestellt, in dem sich jeden Morgen dieselbe Frage stellte: Wer arbeitet heute, in welchem Bereich, in welcher Schicht. Geplant wurde in Excel, korrigiert wurde mündlich.</p>
+          <p>Der Bildschirm in der Halle gehört genau deshalb zum Modul. Er zeigt den Plan dort, wo die Leute ihn tatsächlich brauchen.</p>
+          <p>Mit Odoo arbeite ich seit 2022, inzwischen über drei Hauptversionen hinweg. Wenn Ihr Ablauf anders aussieht als der, den ich damals gesehen habe: Das ist der Normalfall. Beschreiben Sie ihn uns.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>mit Odoo seit</dt><dd>2022</dd></div>
+          <div><dt>Hauptversionen gepflegt</dt><dd>3</dd></div>
+          <div><dt>Sprachen im Schichtplaner</dt><dd>21</dd></div>
+        </dl>
+      </div>
+      <figure class="kiosk-wrap">
+        <div class="kiosk-3d"><div class="kiosk-tilt">
+        <div class="kiosk" role="img" aria-label="Hallenbildschirm mit dem heutigen Schichtplan">
+          <div class="ks"><div class="ks-in">
+            <div class="ks-top">
+              <p class="ks-day"><span class="live">Live</span>Halle, heute<b id="ksDay">Dienstag, 27. Oktober</b></p>
+              <p class="ks-clock" id="ksClock">06:00</p>
+            </div>
+            <div class="ks-cols" id="ksCols">
+              <div class="ks-col F"><h3>Frühschicht <span>06–14</span></h3><ul><li>Anna K.</li><li>Jana P.</li></ul></div>
+              <div class="ks-col S"><h3>Spätschicht <span>14–22</span></h3><ul><li>Murat D.</li><li>Felix R.</li></ul></div>
+              <div class="ks-col N"><h3>Nachtschicht <span>22–06</span></h3><ul><li>Tobias W.</li></ul></div>
+            </div>
+            <p class="ks-off" id="ksOff">Heute abwesend: <b>Lena S.</b></p>
+          </div></div>
+        </div>
+        <div class="stand" aria-hidden="true"></div>
+        </div></div>
+        <figcaption class="kiosk-cap"><svg class="ti" aria-hidden="true"><use href="#ti-device-tv"/></svg><span>Die Hallenansicht liest denselben Plan wie die Vorschau oben. Verschieben Sie dort eine Schicht, zieht der Bildschirm nach. Abwesende erscheinen nur als „abwesend“, ohne Grund – und ab Werk ist die Ansicht ausgeschaltet.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Modules -->
+<section class="sec ruled" id="produkte" aria-labelledby="prh">
+  <div class="shell">
+    <div class="sec-head center">
+      <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-packages"/></svg>Module im Odoo Apps Store</p>
+      <h2 class="h2 sheen" id="prh">Aus dem Problem wurde Software, die andere kaufen.</h2>
+      <p class="lede">Beide Module sind aus einem echten Ablauf entstanden, nicht aus einer Feature-Liste. Sie stehen im offiziellen Odoo Apps Store, laufen in produktiven Datenbanken und werden von uns über Odoo 17, 18 und 19 gepflegt – nachsehen können Sie selbst.</p>
+    </div>
+
+    <article class="mrow" aria-labelledby="m1">
+      <div class="show glow" data-glow>
+        <div class="show-bar">
+          <span class="show-t"><img src="assets/img/icon-shift.png" alt="" width="18" height="18">Shift Planning Turbo</span>
+          <span class="show-chip"><svg class="ti" aria-hidden="true"><use href="#ti-drag-drop"/></svg>Schichten per Drag and Drop</span>
+        </div>
+        <button type="button" class="shot" data-zoom aria-label="Bild vergrößern: Schichtplanung">
+          <img src="assets/img/planner-demo.webp" alt="Wochenraster der Schichtplanung, in dem eine Schicht per Drag and Drop auf einen anderen Tag gezogen wird" width="1920" height="1080" loading="lazy">
+          <span class="plate-hint" aria-hidden="true"><svg class="ti"><use href="#ti-maximize"/></svg>Vergrößern</span>
+        </button>
+      </div>
+      <div class="mdet">
+        <div class="mod-head">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-calendar-week"/></svg></span>
+          <p class="mod-kind">Schichtplanung</p>
+          <p class="vers" aria-label="Läuft auf Odoo 17, 18 und 19"><span>17</span><span>18</span><span>19</span></p>
+        </div>
+        <h3 class="h3 mtitle" id="m1">Shift Planning Turbo</h3>
+        <p class="mod-desc">Ein Planungsraster, das Kopfrechnen überflüssig macht.</p>
+        <ul class="feat">
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-clock-hour-4"/></svg>Geplante Stunden gegen Ziel, direkt über dem Raster</li>
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-beach"/></svg>Offene Abwesenheiten im selben Blick</li>
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-alert-triangle"/></svg>Erkannte Konflikte springen per Klick in die betroffene Zelle</li>
+        </ul>
+        <dl class="spec">
+          <div><svg class="ti" aria-hidden="true"><use href="#ti-puzzle"/></svg><dt>Abhängig von</dt><dd><span class="code">hr</span>, <span class="code">hr_holidays</span>, <span class="code">mail</span></dd></div>
+          <div><svg class="ti" aria-hidden="true"><use href="#ti-language"/></svg><dt>Sprachen</dt><dd>21</dd></div>
+        </dl>
+        <div class="mod-foot">
+          <p class="price">99 €<small>einmalig pro Datenbank</small></p>
+          <a class="btn btn-solid btn-sm" href="https://apps.odoo.com/apps/modules/19.0/dienstplan_lager" rel="noopener">Im Odoo Apps Store<svg class="ti up" aria-hidden="true"><use href="#ti-arrow-up-right"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mrow flip" aria-labelledby="m2">
+      <div class="show desk glow" data-glow>
+        <div class="desk-pat" aria-hidden="true"></div>
+        <button type="button" class="paper" data-zoom aria-label="Bild vergrößern: Zolldokument">
+          <img src="assets/img/customs.webp" alt="Gedrucktes Zolldokument mit Artikelpositionen, Palettenmaßen und Summen je HS-Code" width="1200" height="850" loading="lazy">
+          <span class="plate-hint" aria-hidden="true"><svg class="ti"><use href="#ti-maximize"/></svg>Vergrößern</span>
+        </button>
+        <span class="pin-note n1" aria-hidden="true"><svg class="ti"><use href="#ti-packages"/></svg>Maße und Gewicht je Palette</span>
+        <span class="pin-note n2" aria-hidden="true"><svg class="ti"><use href="#ti-table"/></svg>Summen je HS-Code</span>
+      </div>
+      <div class="mdet">
+        <div class="mod-head">
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-packages"/></svg></span>
+          <p class="mod-kind">Lager und Versand</p>
+          <p class="vers" aria-label="Läuft auf Odoo 17, 18 und 19"><span>17</span><span>18</span><span>19</span></p>
+        </div>
+        <h3 class="h3 mtitle" id="m2">Pallet Packing List &amp; Customs</h3>
+        <p class="mod-desc">Aus einem Lieferauftrag werden Paletten.</p>
+        <ul class="feat">
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-stack-2"/></svg>Mengen füllen eine Palette bis zur Kapazität, dann beginnt die nächste</li>
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-packages"/></svg>Chargen, Maße und Gewichte hängen an der einzelnen Palette, nicht an der Sendung</li>
+          <li><svg class="ti" aria-hidden="true"><use href="#ti-file-invoice"/></svg>Zolldokument mit einer Zeile je HS-Code, mit Gewicht und Wert</li>
+        </ul>
+        <dl class="spec">
+          <div><svg class="ti" aria-hidden="true"><use href="#ti-puzzle"/></svg><dt>Abhängig von</dt><dd><span class="code">stock</span>, <span class="code">stock_delivery</span>, <span class="code">sale_stock</span></dd></div>
+        </dl>
+        <div class="mod-foot">
+          <p class="price">79 €<small>einmalig pro Datenbank</small></p>
+          <a class="btn btn-solid btn-sm" href="https://apps.odoo.com/apps/modules/19.0/stock_pallet_turbo" rel="noopener">Im Odoo Apps Store<svg class="ti up" aria-hidden="true"><use href="#ti-arrow-up-right"/></svg></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Partners -->
+<section class="sec ruled" id="partner" aria-labelledby="pth">
+  <div class="shell">
+    <div class="p-head">
+      <div>
+        <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-users"/></svg>Für Odoo-Partner</p>
+        <h2 class="h2 sheen" id="pth">Zusätzliche Entwicklungs&shy;kapazität für ein Kundenprojekt?</h2>
+      </div>
+      <div class="p-intro">
+        <p class="lede">Wir übernehmen Entwicklung im Unterauftrag oder projektbezogen – abgestimmt direkt mit Ihrem Projektleiter.</p>
+        <a class="btn btn-solid" href="#kontakt">Kapazität besprechen<svg class="ti go" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+      </div>
+    </div>
+
+    <div class="pb">
+      <article class="vt pb-line glow" data-glow>
+        <div class="vt-vis vis-line" aria-hidden="true">
+          <div class="node">
+            <span class="itile"><svg class="ti"><use href="#ti-user"/></svg></span>
+            <b>Ihr Projektleiter</b><small>beim Odoo-Partner</small>
+          </div>
+          <div class="link">
+            <span class="tag-direct">direkt</span>
+            <svg viewBox="0 0 100 12" preserveAspectRatio="none"><path class="base" pathLength="100" d="M0 6H100"/><path class="pulse" pathLength="100" d="M0 6H100"/></svg>
+          </div>
+          <div class="node dev">
+            <span class="itile blue"><svg class="ti"><use href="#ti-code"/></svg></span>
+            <b>Entwickler</b><small>schreibt den Code</small>
+            <div class="crew">
+              <span class="vline"></span>
+              <span class="crew-chip"><span class="dots"><i></i><i></i><i></i></span>feste Partner bei größerem Umfang</span>
+            </div>
+          </div>
+        </div>
+        <div class="vt-body">
+          <h3 class="h3">Direkt mit dem, der den Code schreibt</h3>
+          <p>Die Abstimmung läuft zwischen Ihrem Projektleiter und dem Entwickler. Bei größerem Umfang arbeiten wir mit festen Partnern zusammen – Ihr Ansprechpartner bleibt derselbe.</p>
+        </div>
+      </article>
+
+      <article class="vt pb-when glow" data-glow>
+        <div class="when">
+          <h3 class="h3">Wann wir einspringen</h3>
+          <ul class="when-list">
+            <li><span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-users"/></svg></span>Ihr eigenes Team ist ausgelastet</li>
+            <li><span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-chart-line"/></svg></span>Ein Projekt hat Spitzen</li>
+            <li><span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-calendar-time"/></svg></span>Eine Migration bleibt zwischen zwei anderen Terminen liegen</li>
+          </ul>
+        </div>
+      </article>
+
+      <dl class="pb-caps">
+        <div class="glow" data-glow><dt><svg class="ti" aria-hidden="true"><use href="#ti-code"/></svg>Technisch</dt><dd class="stack-chips"><span>Python</span><span>XML/QWeb</span><span>OWL</span><span>Modulentwicklung</span></dd></div>
+        <div class="glow" data-glow><dt><svg class="ti" aria-hidden="true"><use href="#ti-versions"/></svg>Migrationen</dt><dd>17 → 18 → 19, inklusive eigener Module</dd></div>
+        <div class="glow" data-glow><dt><svg class="ti" aria-hidden="true"><use href="#ti-receipt-euro"/></svg>Abrechnung</dt><dd>deutsche Rechnung, Sitz in Bayern</dd></div>
+        <div class="glow" data-glow><dt><svg class="ti" aria-hidden="true"><use href="#ti-language"/></svg>Kommunikation</dt><dd>Deutsch oder Englisch, direkt mit dem Entwickler</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec ruled" id="faq" aria-labelledby="qh">
+  <div class="shell">
+    <div class="split faqs">
+      <div class="faq-aside">
+        <p class="topic"><svg class="ti" aria-hidden="true"><use href="#ti-help-hexagon"/></svg>Häufige Fragen</p>
+        <h2 class="h2 sheen" id="qh">Ehrliche Antworten, kurz gehalten.</h2>
+        <div class="faq-cta glow" data-glow>
+          <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-messages"/></svg></span>
+          <p><b>Ihre Frage ist nicht dabei?</b><span>Die Antwort kommt direkt von einem Entwickler.</span></p>
+          <a class="btn btn-glass btn-sm" href="#kontakt">Frage stellen<svg class="ti go" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+        </div>
+      </div>
+      <div class="faq">
+        <details name="faq" open>
+          <summary>Brauche ich Odoo Enterprise?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Für unsere Module nicht. Der Schichtplaner hängt an <span class="code">hr</span>, <span class="code">hr_holidays</span> und <span class="code">mail</span>, das Palettenmodul an <span class="code">stock</span>, <span class="code">stock_delivery</span> und <span class="code">sale_stock</span> – alles Community. Bei Anpassungen arbeiten wir mit dem, was bei Ihnen läuft.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Können Sie eine bestehende Odoo-Installation anpassen?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Ja, das ist der häufigste Fall. Wir sehen uns zuerst an, was schon angepasst wurde – vorhandene Eigenentwicklungen entscheiden oft darüber, was sinnvoll machbar ist.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Können Sie eigene Module zwischen Odoo-Versionen migrieren?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Ja. Die Standardmodule sind selten das Problem – die eigenen sind es. Beide Module in unserem Portfolio pflegen wir selbst über drei Odoo-Versionen, und getestet wird immer auf einer Kopie.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Wie läuft die Preisgestaltung?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Nach dem Gespräch über den Ablauf schätzen wir den Aufwand und nennen einen Preis, bevor gearbeitet wird. Die Einschätzung selbst kostet nichts. Bei kleinen Anpassungen rechnen wir nach Aufwand, bei klar umrissenen Modulen zum Festpreis.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Bekomme ich den Quellcode?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Ja. Sie sollen uns weiterbeauftragen können, weil es passt – nicht, weil Sie keine Wahl haben.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Können Sie uns bei der E‑Rechnung helfen?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Zuerst prüfen wir, ob Ihr Odoo das bereits kann – die deutsche Lokalisierung deckt XRechnung und ZUGFeRD in aktuellen Versionen ab. Meistens ist es eine Frage der Einrichtung und des Ablaufs, nicht der Entwicklung. Wo im Rechnungsprozess noch manuell nachgearbeitet wird, sehen wir uns getrennt an.</p></div>
+        </details>
+        <details name="faq">
+          <summary>Wie halten Sie es mit Datenschutz und externen Diensten?<span class="pm" aria-hidden="true"><svg class="ti"><use href="#ti-plus"/></svg></span></summary>
+          <div class="ans"><p>Unsere Module rufen nichts von außen ab: keine CDN-Aufrufe, keine Telemetrie, Schriften vom eigenen Server. Die Kiosk-Ansicht ist standardmäßig aus und zeigt, einmal aktiviert, nur „abwesend“ statt des Grundes.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="sec" id="kontakt" aria-labelledby="kh">
+  <div class="shell">
+    <div class="contact">
+      <div class="contact-edge" aria-hidden="true"></div>
+      <div class="edge-ring" aria-hidden="true"></div>
+      <div class="c-head">
+        <h2 class="display sheen" id="kh">Sagen Sie uns, was nicht funktioniert.</h2>
+        <p class="lede">Sie müssen die technische Lösung nicht kennen. Beschreiben Sie, wie Ihr Ablauf heute aussieht, welche Odoo-Version läuft und was am Ende herauskommen soll.</p>
+      </div>
+
+      <div class="c-grid">
+        <form class="steps" id="compose" action="mailto:kontakt@erp-bayern.de?subject=Projektanfrage" method="post" enctype="text/plain">
+          <p class="c-label"><svg class="ti" aria-hidden="true"><use href="#ti-mail"/></svg>Anfrage in drei Sätzen</p>
+          <div class="step">
+            <span class="num" aria-hidden="true"><i>1</i><svg class="ti"><use href="#ti-check"/></svg></span>
+            <div class="field">
+              <label for="f-now">Wie läuft der Ablauf heute?</label>
+              <textarea class="input" id="f-now" name="ablauf" rows="3" placeholder="Zum Beispiel: Wir planen Schichten in Excel und schicken den Plan per Messenger herum."></textarea>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num" aria-hidden="true"><i>2</i><svg class="ti"><use href="#ti-check"/></svg></span>
+            <fieldset class="field">
+              <legend>Welche Odoo-Version läuft?</legend>
+              <div class="chips">
+                <label class="chip"><input type="radio" name="version" value="Odoo 19"><span>Odoo 19</span></label>
+                <label class="chip"><input type="radio" name="version" value="Odoo 18"><span>Odoo 18</span></label>
+                <label class="chip"><input type="radio" name="version" value="Odoo 17"><span>Odoo 17</span></label>
+                <label class="chip"><input type="radio" name="version" value="ältere Version"><span>Älter</span></label>
+                <label class="chip"><input type="radio" name="version" value="noch kein Odoo"><span>Noch kein Odoo</span></label>
+                <label class="chip"><input type="radio" name="version" value="weiß ich nicht"><span>Weiß ich nicht</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="step">
+            <span class="num" aria-hidden="true"><i>3</i><svg class="ti"><use href="#ti-check"/></svg></span>
+            <div class="field">
+              <label for="f-goal">Was soll am Ende herauskommen?</label>
+              <textarea class="input" id="f-goal" name="ziel" rows="3" placeholder="Zum Beispiel: Ein Plan, den alle in der Halle sehen, ohne nachfragen zu müssen."></textarea>
+            </div>
+          </div>
+          <div class="steps-foot">
+            <button type="submit" class="btn btn-solid">E-Mail-Entwurf öffnen<svg class="ti go" aria-hidden="true"><use href="#ti-send"/></svg></button>
+            <p>Öffnet Ihr E-Mail-Programm mit diesem Text. Über diese Seite wird nichts gesendet.</p>
+          </div>
+        </form>
+
+        <aside class="c-direct" aria-labelledby="c-direct-h">
+          <p class="c-label" id="c-direct-h"><svg class="ti" aria-hidden="true"><use href="#ti-phone"/></svg>Lieber direkt?</p>
+          <div class="direct">
+            <div class="row">
+              <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-mail"/></svg></span>
+              <span class="kv"><span class="k">E-Mail</span><a class="v" href="mailto:kontakt@erp-bayern.de">kontakt@erp-bayern.de</a></span>
+              <button type="button" class="copy" id="cpy" aria-label="E-Mail-Adresse kopieren"><svg class="ti" aria-hidden="true"><use href="#ti-copy"/></svg></button>
+            </div>
+            <div class="row">
+              <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-phone"/></svg></span>
+              <span class="kv"><span class="k">Telefon</span><a class="v" href="tel:+4915226389297">+49 1522 6389297</a></span>
+            </div>
+            <div class="row">
+              <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-map-pin"/></svg></span>
+              <span class="kv"><span class="k">Sitz</span><span class="v">Amberg, Oberpfalz</span></span>
+            </div>
+            <div class="row">
+              <span class="itile" aria-hidden="true"><svg class="ti"><use href="#ti-language"/></svg></span>
+              <span class="kv"><span class="k">Sprachen</span><span class="v">Deutsch und Englisch</span></span>
+            </div>
+          </div>
+          <div class="next">
+            <p class="next-h">So geht es weiter</p>
+            <ol>
+              <li><span class="nx">1</span><p><b>Antwort in der Regel am nächsten Werktag</b><span>direkt von einem Entwickler, nicht aus einem Vertriebstrichter</span></p></li>
+              <li><span class="nx">2</span><p><b>Gespräch über Ihren Ablauf</b><span>Sie beschreiben, was anders laufen soll. Die technische Einordnung übernehmen wir.</span></p></li>
+              <li><span class="nx">3</span><p><b>Preis, bevor gearbeitet wird</b><span>Die Einschätzung selbst kostet nichts.</span></p></li>
+            </ol>
+            <p class="next-note"><svg class="ti" aria-hidden="true"><use href="#ti-check"/></svg>Keine Nachfass-Mails, wenn es nicht passt.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="shell">
+    <div class="ft-grid">
+      <div>
+        <a href="/" class="brand"><img src="assets/img/icon-shift.png" alt="" width="26" height="26">Turbo Solutions</a>
+        <p class="ft-tag">Odoo-Apps, Entwicklung und Automatisierung aus Amberg in der Oberpfalz.</p>
+      </div>
+      <div>
+        <h2>Module</h2>
+        <ul>
+          <li><a href="https://apps.odoo.com/apps/modules/19.0/dienstplan_lager" rel="noopener">Shift Planning Turbo<svg class="ti" aria-hidden="true"><use href="#ti-arrow-up-right"/></svg></a></li>
+          <li><a href="https://apps.odoo.com/apps/modules/19.0/stock_pallet_turbo" rel="noopener">Pallet &amp; Customs<svg class="ti" aria-hidden="true"><use href="#ti-arrow-up-right"/></svg></a></li>
+          <li><a href="/leistungen">Leistungen</a></li>
+          <li><a href="#partner">Für Partner</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li><a href="mailto:kontakt@erp-bayern.de">kontakt@erp-bayern.de</a></li>
+          <li><a href="/impressum.html">Impressum</a></li>
+          <li><a href="/datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 Turbo Solutions</span>
+      <span class="ft-clock" id="ftClock" hidden><svg class="ti" aria-hidden="true"><use href="#ti-clock-hour-4"/></svg>Ortszeit Amberg <b id="ftTime"></b></span>
+      <span class="mono">49.4429° N, 11.8626° E</span>
+      <a class="totop" href="#main">Nach oben<svg class="ti" aria-hidden="true"><use href="#ti-arrow-right"/></svg></a>
+    </div>
+    <p class="wordmark" aria-hidden="true">Turbo Solutions</p>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Bildansicht">
+  <button type="button" class="lb-x" id="lbx" aria-label="Schließen"><svg class="ti" aria-hidden="true"><use href="#ti-x"/></svg></button>
+  <img id="lbi" src="data:," alt="">
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="ti" aria-hidden="true"><use href="#ti-circle-check"/></svg><span></span></div>
+
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wide = matchMedia('(min-width: 900px)');
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const icon = (name, cls = 'ti') => `<svg class="${cls}" aria-hidden="true"><use href="#ti-${name}"/></svg>`;
+
+  /* Header: denser once scrolled; mobile menu */
+  const hd = $('#hd'), burger = $('#mnb'), menu = $('#mn');
+  const setMenu = open => {
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    $('use', burger).setAttribute('href', open ? '#ti-x' : '#ti-menu-2');
+    menu.hidden = !open;
+  };
+  burger.addEventListener('click', () => setMenu(menu.hidden));
+  menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); burger.focus(); } });
+
+  /* Page toast */
+  const toast = $('#toast');
+  let toastT;
+  const say = msg => {
+    $('span', toast).textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(toastT);
+    toastT = setTimeout(() => toast.classList.remove('on'), 2400);
+  };
+
+  /* ── Planner demo ─────────────────────────────────────────────────── */
+  const TYPES = {
+    F: { name: 'Früh', long: 'Frühschicht', time: '06–14', start: 6, end: 14, icon: 'sun' },
+    S: { name: 'Spät', long: 'Spätschicht', time: '14–22', start: 14, end: 22, icon: 'sunset-2' },
+    N: { name: 'Nacht', long: 'Nachtschicht', time: '22–06', start: 22, end: 30, icon: 'moon' },
+  };
+  const DAYS = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+  const SHORT = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+  const MIN_REST = 11;
+  const people = [
+    { name: 'Anna K.',   area: 'Wareneingang',     target: 40, c: '#5b9dff', cells: ['F', 'F', 'F', 'F', 'F', null, null] },
+    { name: 'Murat D.',  area: 'Kommissionierung', target: 40, c: '#8f86ff', cells: ['S', 'S', 'S', 'F', null, 'S', null] },
+    { name: 'Lena S.',   area: 'Versand',          target: 24, c: '#34d3c0', cells: ['U', 'U', 'S', 'S', 'S', null, null] },
+    { name: 'Tobias W.', area: 'Wareneingang',     target: 40, c: '#7dd3fc', cells: ['N', 'N', 'N', 'N', null, null, null] },
+    { name: 'Jana P.',   area: 'Kommissionierung', target: 24, c: '#c084fc', cells: [null, 'F', 'F', null, 'F', null, null] },
+    { name: 'Felix R.',  area: 'Versand',          target: 40, c: '#6ee7b7', cells: ['F', 'S', 'S', 'S', 'S', null, null] },
+  ];
+
+  const now = new Date();
+  const todayIdx = (now.getDay() + 6) % 7;
+  const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - todayIdx);
+  const dayDate = d => new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + d);
+  const isoWeek = d => {
+    const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+    return Math.ceil(((t - Date.UTC(t.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
+  };
+  const fmt = (d, o) => d.toLocaleDateString('de-DE', o);
+  $('#mkKw').textContent = 'KW ' + isoWeek(now);
+  $('#mkRange').textContent = `${fmt(monday, { day: 'numeric', month: 'short' })} bis ${fmt(dayDate(6), { day: 'numeric', month: 'short' })}`;
+
+  const grid = $('#mkGrid'), frame = $('#mkFrame'), mkToast = $('#mkToast');
+  const hoursOf = p => p.cells.filter(c => TYPES[c]).length * 8;
+  const initials = n => n.split(' ').map(s => s[0]).join('');
+  const avatar = p => `<span class="av" style="--c:${p.c}" aria-hidden="true">${initials(p.name)}</span>`;
+
+  function conflicts() {
+    const out = [];
+    people.forEach((p, r) => {
+      for (let d = 0; d < 6; d++) {
+        const a = TYPES[p.cells[d]], b = TYPES[p.cells[d + 1]];
+        if (a && b && 24 + b.start - a.end < MIN_REST) out.push([r, d], [r, d + 1]);
+      }
+    });
+    return out;
+  }
+
+  let noteT;
+  const note = (msg, ic = 'circle-check') => {
+    mkToast.innerHTML = icon(ic) + '<span></span>';
+    $('span', mkToast).textContent = msg;
+    $('.ti', mkToast).style.color = ic === 'circle-check' ? 'var(--green)' : 'var(--amber)';
+    mkToast.classList.add('on');
+    clearTimeout(noteT);
+    noteT = setTimeout(() => mkToast.classList.remove('on'), 2800);
+  };
+
+  function render(focus) {
+    const cf = conflicts();
+    const bad = new Set(cf.map(([r, d]) => r + '-' + d));
+    let html = '<div class="mk-h">Team</div>';
+    for (let d = 0; d < 7; d++) {
+      const t = d === todayIdx;
+      html += `<div class="mk-h${t ? ' today' : ''}">${SHORT[d]}${t ? '<em>heute</em>' : ''}<b>${dayDate(d).getDate()}</b></div>`;
+    }
+    people.forEach((p, r) => {
+      const h = hoursOf(p);
+      const state = h > p.target ? 'over' : h === p.target ? 'ok' : 'under';
+      html += `<div class="mk-who">${avatar(p)}<span class="who"><span class="who-n">${p.name}</span><span class="who-a">${p.area}</span></span>`
+        + `<span class="who-h ${state}">${h}/${p.target} h<i><b style="width:${Math.min(100, h / p.target * 100)}%"></b></i></span></div>`;
+      p.cells.forEach((c, d) => {
+        const cls = 'cell' + (d > 4 ? ' we' : '') + (d === todayIdx ? ' today' : '');
+        let inner = '';
+        if (c === 'U') {
+          inner = `<span class="sh U" title="Abwesenheit aus der Urlaubsverwaltung"><span class="sh-t"><b>Abwesend</b></span>${icon('beach')}</span>`;
+        } else if (c) {
+          const t = TYPES[c], isBad = bad.has(r + '-' + d);
+          const label = `${p.name}, ${DAYS[d]}: ${t.long} ${t.time} Uhr${isBad ? '. Konflikt: Ruhezeit unter 11 Stunden' : ''}`;
+          inner = `<button type="button" class="sh ${c}${isBad ? ' cf' : ''}" data-r="${r}" data-d="${d}" aria-label="${label}" aria-describedby="mkHelp"><span class="sh-t"><b>${t.name}</b><span>${t.time}</span></span>${icon(isBad ? 'alert-triangle' : t.icon)}</button>`;
+        }
+        html += `<div class="${cls}" data-r="${r}" data-d="${d}">${inner}</div>`;
+      });
+    });
+    html += '<div class="mk-sum-l">Summe pro Tag</div>';
+    for (let d = 0; d < 7; d++) {
+      const sum = people.reduce((s, p) => s + (TYPES[p.cells[d]] ? 8 : 0), 0);
+      html += `<div class="mk-sum"><b>${sum}</b> h</div>`;
+    }
+    grid.innerHTML = html;
+
+    const total = people.reduce((s, p) => s + hoursOf(p), 0);
+    const target = people.reduce((s, p) => s + p.target, 0);
+    $('#kpiHours').textContent = total;
+    $('#kpiTarget').textContent = `von ${target} h`;
+    $('#kpiBar').style.width = Math.min(100, total / target * 100) + '%';
+    $('#kpiAbs').textContent = people.reduce((s, p) => s + p.cells.filter(c => c === 'U').length, 0);
+    const n = cf.length / 2, kc = $('#kpiConf');
+    kc.dataset.n = n;
+    $('#kpiConfN').textContent = n;
+    $('#kpiConfS').textContent = n ? 'Ruhezeit unter 11 h' : 'alle Ruhezeiten eingehalten';
+    $('#kpiConfTag').textContent = n ? 'Anzeigen' : 'Plan ok';
+    $('#kpiConfIc').setAttribute('href', n ? '#ti-alert-triangle' : '#ti-circle-check');
+    kc.setAttribute('aria-label', n ? `${n} ${n > 1 ? 'Konflikte' : 'Konflikt'}, anzeigen` : 'Keine Konflikte');
+
+    renderKiosk();
+    if (focus) $(`.sh[data-r="${focus[0]}"][data-d="${focus[1]}"]`, grid)?.focus({ preventScroll: true });
+    return n;
+  }
+
+  function move(r1, d1, r2, d2, viaKeyboard) {
+    if (r2 < 0 || r2 >= people.length || d2 < 0 || d2 > 6 || (r1 === r2 && d1 === d2)) return false;
+    const a = people[r1].cells[d1], b = people[r2].cells[d2];
+    if (b === 'U') { note(`${people[r2].name} ist am ${DAYS[d2]} abwesend.`, 'beach'); return false; }
+    people[r2].cells[d2] = a;
+    people[r1].cells[d1] = b;
+    const n = render(viaKeyboard ? [r2, d2] : null);
+    if (viaKeyboard) note(`${TYPES[a].long} jetzt bei ${people[r2].name}, ${DAYS[d2]}. ${n ? n + ' Konflikt' + (n > 1 ? 'e' : '') : 'Keine Konflikte'}.`, n ? 'alert-triangle' : 'circle-check');
+    return true;
+  }
+
+  const flashConflicts = scroll => {
+    const els = $$('.sh.cf', grid);
+    if (!els.length) return;
+    if (scroll) els[0].scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+    els.forEach(el => { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); });
+    return els[0];
+  };
+  $('#kpiConf').addEventListener('click', () => flashConflicts(true)?.focus({ preventScroll: true }));
+
+  /* Keyboard: arrows move a shift by one day or one person */
+  const KEYS = { ArrowLeft: [0, -1], ArrowRight: [0, 1], ArrowUp: [-1, 0], ArrowDown: [1, 0] };
+  grid.addEventListener('keydown', e => {
+    const b = e.target.closest('.sh[data-r]'), m = KEYS[e.key];
+    if (!b || !m) return;
+    e.preventDefault();
+    stopDemo();
+    const r = +b.dataset.r, d = +b.dataset.d;
+    move(r, d, r + m[0], d + m[1], true);
+  });
+
+  /* Pointer drag */
+  const cloneShift = b => {
+    const g = b.cloneNode(true);
+    ['data-r', 'aria-label', 'aria-describedby'].forEach(a => g.removeAttribute(a));
+    g.setAttribute('aria-hidden', 'true');
+    g.classList.remove('flash', 'lift');
+    g.classList.add('ghost');
+    return g;
+  };
+  let drag = null;
+  grid.addEventListener('pointerdown', e => {
+    const b = e.target.closest('.sh[data-r]');
+    if (!b || e.button !== 0) return;
+    stopDemo();
+    const rc = b.getBoundingClientRect();
+    drag = { b, id: e.pointerId, r: +b.dataset.r, d: +b.dataset.d, x: e.clientX, y: e.clientY, ox: e.clientX - rc.left, oy: e.clientY - rc.top, w: rc.width, h: rc.height, ghost: null, over: null };
+    b.setPointerCapture(e.pointerId);
+  });
+  grid.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.ghost) {
+      if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 4) return;
+      const g = cloneShift(drag.b);
+      g.style.width = drag.w + 'px';
+      g.style.height = drag.h + 'px';
+      document.body.appendChild(g);
+      drag.ghost = g;
+      drag.b.classList.add('lift');
+      document.documentElement.classList.add('dragging');
+    }
+    drag.ghost.style.left = e.clientX - drag.ox + 'px';
+    drag.ghost.style.top = e.clientY - drag.oy + 'px';
+    let cell = document.elementFromPoint(e.clientX, e.clientY)?.closest('#mkGrid .cell') || null;
+    if (cell && +cell.dataset.r === drag.r && +cell.dataset.d === drag.d) cell = null;
+    if (cell !== drag.over) {
+      drag.over?.classList.remove('drop', 'nodrop');
+      drag.over = cell;
+      cell?.classList.add(people[+cell.dataset.r].cells[+cell.dataset.d] === 'U' ? 'nodrop' : 'drop');
+    }
+  });
+  const endDrag = e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const { ghost, over, r, d, b } = drag;
+    drag = null;
+    document.documentElement.classList.remove('dragging');
+    over?.classList.remove('drop', 'nodrop');
+    if (!ghost) return;
+    ghost.remove();
+    b.classList.remove('lift');
+    if (e.type === 'pointerup' && over) move(r, d, +over.dataset.r, +over.dataset.d);
+  };
+  grid.addEventListener('pointerup', endDrag);
+  grid.addEventListener('pointercancel', endDrag);
+
+  /* Panel tilt: leans back at first, straightens once while scrolling */
+  const canTilt = !reduce && wide.matches;
+  let flat = !canTilt, peak = 0;
+  const tilt = () => {
+    if (flat) return;
+    const top = frame.getBoundingClientRect().top, vh = innerHeight;
+    peak = Math.max(peak, Math.min(1, Math.max(0, (vh * .85 - top) / (vh * .6))));
+    const e = peak * peak * (3 - 2 * peak);
+    frame.style.setProperty('--tilt', ((1 - e) * 22).toFixed(2) + 'deg');
+    frame.style.setProperty('--sc', (.93 + .07 * e).toFixed(4));
+    if (peak >= 1) { flat = true; frame.classList.add('flat'); tryDemo(); }
+  };
+  if (flat) frame.classList.add('flat');
+
+  let ticking = false;
+  const onScroll = () => {
+    hd.classList.toggle('is-scrolled', scrollY > 24);
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; tilt(); spy(); }); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+
+  /* One-time guided demo: find the conflict, drag it to a free day */
+  const cursor = $('#mkCursor');
+  let demoOff = reduce || !wide.matches, inView = false;
+  function stopDemo() {
+    if (demoOff && !$('.ghost.in-frame', frame)) return;
+    demoOff = true;
+    cursor.style.opacity = 0;
+    cursor.classList.remove('press');
+    $$('.ghost.in-frame', frame).forEach(g => g.remove());
+    $$('.sh.lift', grid).forEach(s => s.classList.remove('lift'));
+  }
+  frame.addEventListener('pointerdown', stopDemo);
+  function tryDemo() {
+    if (demoOff || !flat || !inView) return;
+    inView = false;
+    setTimeout(() => { if (!demoOff) demo(); }, 700);
+  }
+  if (!demoOff && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => {
+      if (!es.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      inView = true;
+      tryDemo();
+    }, { threshold: .45 });
+    io.observe(frame);
+  }
+
+  async function demo() {
+    const rel = (el, dx = 0, dy = 0) => {
+      const f = frame.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return [r.left - f.left + r.width / 2 + dx, r.top - f.top + r.height / 2 + dy];
+    };
+    const point = ([x, y]) => { cursor.style.transform = `translate(${x}px, ${y}px)`; };
+    const press = async () => { cursor.classList.add('press'); await wait(170); cursor.classList.remove('press'); };
+    const f0 = frame.getBoundingClientRect();
+    cursor.style.transition = 'none';
+    point([f0.width * .58, f0.height * .95]);
+    void cursor.offsetWidth;
+    cursor.style.transition = '';
+    cursor.style.opacity = 1;
+    await wait(350); if (demoOff) return;
+
+    point(rel($('#kpiConf'), 40, 8)); await wait(900); if (demoOff) return;
+    await press(); flashConflicts(false); await wait(1100); if (demoOff) return;
+
+    const src = $('.sh[data-r="1"][data-d="3"]', grid), dst = $('.cell[data-r="1"][data-d="4"]', grid);
+    if (!src || !dst || people[1].cells[4] !== null) return stopDemo();
+    point(rel(src, 8, 6)); await wait(900); if (demoOff) return;
+
+    cursor.classList.add('press');
+    const f = frame.getBoundingClientRect(), s = src.getBoundingClientRect(), t = dst.getBoundingClientRect();
+    const g = cloneShift(src);
+    g.classList.add('in-frame');
+    g.style.cssText = `left:${s.left - f.left}px;top:${s.top - f.top}px;width:${s.width}px;height:${s.height}px`;
+    frame.appendChild(g);
+    src.classList.add('lift');
+    await wait(140); if (demoOff) return;
+    void g.offsetWidth;
+    g.style.left = t.left - f.left + (t.width - s.width) / 2 + 'px';
+    g.style.top = t.top - f.top + (t.height - s.height) / 2 + 'px';
+    point(rel(dst, 8, 6));
+    await wait(860); if (demoOff) return;
+
+    cursor.classList.remove('press');
+    g.remove();
+    move(1, 3, 1, 4);
+    note('Konflikt gelöst. Jetzt Sie: Ziehen Sie eine Schicht.');
+    await wait(900);
+    demoOff = true;
+    cursor.style.opacity = 0;
+  }
+
+  /* ── Hall screen: today's column of the same plan ─────────────────── */
+  const ksCols = $('#ksCols'), ksOff = $('#ksOff');
+  function renderKiosk() {
+    const groups = { F: [], S: [], N: [] }, off = [];
+    people.forEach(p => {
+      const c = p.cells[todayIdx];
+      if (groups[c]) groups[c].push(p); else if (c === 'U') off.push(p);
+    });
+    ksCols.innerHTML = Object.keys(groups).map(k =>
+      `<div class="ks-col ${k}"><h3>${icon(TYPES[k].icon)}${TYPES[k].long} <span>${TYPES[k].time}</span></h3><ul>`
+      + (groups[k].length ? groups[k].map(p => `<li>${avatar(p)}<span>${p.name}<small>${p.area}</small></span></li>`).join('') : '<li class="none">niemand eingeplant</li>')
+      + '</ul></div>').join('');
+    ksOff.innerHTML = icon('beach') + (off.length ? `<span>Heute abwesend: ${off.map(p => `<b>${p.name}</b>`).join(', ')}</span>` : '<span>Heute ist niemand abwesend.</span>');
+  }
+  $('#ksDay').textContent = fmt(now, { weekday: 'long', day: 'numeric', month: 'long' });
+  const tick = () => { $('#ksClock').textContent = new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }); };
+  tick();
+  setInterval(tick, 15000);
+
+  render();
+  onScroll();
+
+  /* ── Decision tree: wires from the question to each answer ────────── */
+  const tree = $('#tree'), wires = $('#wires'), root = $('#treeRoot'), leaves = $$('.leaf', tree);
+  let active = 0;
+  function drawWires() {
+    if (!wide.matches) { wires.innerHTML = ''; return; }
+    const lv = $('#leaves');
+    const rx = root.offsetLeft + root.offsetWidth / 2, ry = root.offsetTop + root.offsetHeight;
+    let base = '', hot = '', dots = `<circle class="wire-dot on" cx="${rx}" cy="${ry}" r="3"/>`;
+    leaves.forEach((leaf, i) => {
+      const lx = lv.offsetLeft + leaf.offsetLeft + leaf.offsetWidth / 2, ly = lv.offsetTop + leaf.offsetTop, my = (ry + ly) / 2;
+      const dx = lx - rx, s = Math.sign(dx), rad = Math.min(14, Math.abs(dx) / 2, (ly - ry) / 2);
+      const d = Math.abs(dx) < 1 ? `M${rx} ${ry}V${ly}`
+        : `M${rx} ${ry}V${my - rad}Q${rx} ${my} ${rx + s * rad} ${my}H${lx - s * rad}Q${lx} ${my} ${lx} ${my + rad}V${ly}`;
+      base += `<path class="wire" pathLength="1" d="${d}"/>`;
+      hot += `<path class="wire-hot${i === active ? ' on' : ''}" data-i="${i}" d="${d}"/>`;
+      dots += `<circle class="wire-dot${i === active ? ' on' : ''}" data-i="${i}" cx="${lx}" cy="${ly}" r="3"/>`;
+    });
+    wires.innerHTML = base + hot + dots;
+  }
+  const setActive = i => {
+    active = i;
+    leaves.forEach((l, j) => l.classList.toggle('on', j === i));
+    $$('[data-i]', wires).forEach(el => el.classList.toggle('on', +el.dataset.i === i));
+  };
+  leaves.forEach((leaf, i) => leaf.addEventListener('pointerenter', () => setActive(i)));
+  if ('ResizeObserver' in window) new ResizeObserver(drawWires).observe(tree);
+  document.fonts?.ready.then(drawWires);
+  drawWires();
+
+  /* ── Proximity glow: edges start to light up before the pointer arrives ── */
+  const RANGE = 200;
+  const glows = $$('[data-glow], [data-spot]');
+  let gx = -1e5, gy = -1e5, graf = 0;
+  const paintGlow = () => {
+    graf = 0;
+    for (const el of glows) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -RANGE || r.top > innerHeight + RANGE) continue;
+      const dx = Math.max(r.left - gx, 0, gx - r.right), dy = Math.max(r.top - gy, 0, gy - r.bottom);
+      const t = Math.max(0, 1 - Math.hypot(dx, dy) / RANGE);
+      const k = 1 - (1 - t) * (1 - t);   // ease-out: noticeable early, full on contact
+      el.style.setProperty('--glow', k.toFixed(3));
+      if (!k) continue;
+      if (el.hasAttribute('data-spot')) {
+        el.style.setProperty('--mx', gx - r.left + 'px');
+        el.style.setProperty('--my', gy - r.top + 'px');
+        for (const c of el.children) {
+          const cr = c.getBoundingClientRect();
+          c.style.setProperty('--x', gx - cr.left + 'px');
+          c.style.setProperty('--y', gy - cr.top + 'px');
+        }
+      } else {
+        el.style.setProperty('--x', gx - r.left + 'px');
+        el.style.setProperty('--y', gy - r.top + 'px');
+      }
+    }
+  };
+  const queueGlow = () => { if (!graf) graf = requestAnimationFrame(paintGlow); };
+  addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    gx = e.clientX; gy = e.clientY;
+    queueGlow();
+  }, { passive: true });
+  addEventListener('scroll', queueGlow, { passive: true });
+  addEventListener('mouseout', e => { if (!e.relatedTarget) { gx = gy = -1e5; queueGlow(); } });
+
+  /* ── FAQ: at most one answer open (fallback for browsers without details[name]) ── */
+  const faqs = $$('.faq details');
+  faqs.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) faqs.forEach(o => { if (o !== d && o.open) o.open = false; });
+  }));
+
+  /* ── Night sky: stars fixed to the viewport, the odd shooting star ── */
+  const sky = $('#sky'), sctx = sky.getContext('2d');
+  const base = document.createElement('canvas'), bctx = base.getContext('2d');
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const TINTS = ['255,255,255', '255,255,255', '255,255,255', '255,255,255', '186,208,255', '214,204,255', '255,236,214'];
+  let W = 0, H = 0, stars = [], twinklers = [], meteors = [], nextMeteor = performance.now() + 2200, lastFrame = 0;
+
+  function makeStars() {
+    const n = Math.round(Math.min(380, Math.max(120, innerWidth * innerHeight / 4200)));
+    stars = [];
+    for (let i = 0; i < n; i++) {
+      const big = Math.random() < .09;
+      stars.push({
+        x: Math.random(), y: Math.random(),
+        r: big ? rand(1, 1.55) : rand(.35, .9),
+        a: big ? rand(.65, .95) : rand(.2, .7),
+        tw: Math.random() < .4 ? rand(.5, 1.7) : 0,
+        ph: rand(0, 6.283),
+        c: TINTS[Math.floor(Math.random() * TINTS.length)],
+      });
+    }
+    // a faint band of dust running diagonally across the sky
+    for (let i = 0; i < n * .65; i++) {
+      const u = Math.random(), off = (Math.random() + Math.random() + Math.random() - 1.5) * .11;
+      stars.push({ x: -.1 + u * 1.2 + off * .5, y: .92 - u * .8 + off, r: rand(.3, .6), a: rand(.08, .28), tw: 0, ph: 0, c: '210,220,255' });
+    }
+    twinklers = stars.filter(s => s.tw);
+  }
+  const dot = (ctx, s, a) => {
+    ctx.fillStyle = `rgba(${s.c},${a})`;
+    ctx.beginPath();
+    ctx.arc(s.x * W, s.y * H, s.r, 0, 6.2832);
+    ctx.fill();
+  };
+  function sizeSky() {
+    const w = sky.clientWidth, h = sky.clientHeight;
+    if (w === W && Math.abs(h - H) < 2) return false;
+    W = w; H = h;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    for (const c of [sky, base]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      if (s.tw) continue;
+      if (s.r > 1) {
+        const g = bctx.createRadialGradient(s.x * W, s.y * H, 0, s.x * W, s.y * H, s.r * 5);
+        g.addColorStop(0, `rgba(${s.c},${(s.a * .35).toFixed(3)})`);
+        g.addColorStop(1, `rgba(${s.c},0)`);
+        bctx.fillStyle = g;
+        bctx.beginPath(); bctx.arc(s.x * W, s.y * H, s.r * 5, 0, 6.2832); bctx.fill();
+      }
+      dot(bctx, s, s.a);
+    }
+    return true;
+  }
+  function spawnMeteor() {
+    const dir = Math.random() < .5 ? -1 : 1, ang = rand(.3, .55), v = rand(750, 1150);
+    meteors.push({
+      x: dir < 0 ? rand(W * .3, W * 1.05) : rand(-W * .05, W * .7), y: rand(-H * .05, H * .4),
+      vx: Math.cos(ang) * v * dir, vy: Math.sin(ang) * v,
+      len: rand(130, 250), life: rand(.75, 1.2), age: 0,
+    });
+  }
+  function drawMeteors(dt) {
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.age += dt;
+      if (m.age > m.life) { meteors.splice(i, 1); continue; }
+      m.x += m.vx * dt; m.y += m.vy * dt;
+      const a = Math.sin(Math.PI * m.age / m.life), sp = Math.hypot(m.vx, m.vy);
+      const L = m.len * Math.min(1, m.age / .2), tx = m.x - m.vx / sp * L, ty = m.y - m.vy / sp * L;
+      const g = sctx.createLinearGradient(m.x, m.y, tx, ty);
+      g.addColorStop(0, `rgba(255,255,255,${(.95 * a).toFixed(3)})`);
+      g.addColorStop(.3, `rgba(170,200,255,${(.4 * a).toFixed(3)})`);
+      g.addColorStop(1, 'rgba(140,170,255,0)');
+      sctx.strokeStyle = g;
+      sctx.lineWidth = 1.4;
+      sctx.lineCap = 'round';
+      sctx.beginPath(); sctx.moveTo(m.x, m.y); sctx.lineTo(tx, ty); sctx.stroke();
+      const h = sctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 7);
+      h.addColorStop(0, `rgba(255,255,255,${a.toFixed(3)})`);
+      h.addColorStop(1, 'rgba(160,190,255,0)');
+      sctx.fillStyle = h;
+      sctx.beginPath(); sctx.arc(m.x, m.y, 7, 0, 6.2832); sctx.fill();
+    }
+  }
+  function drawSky(t, dt) {
+    sctx.clearRect(0, 0, W, H);
+    sctx.drawImage(base, 0, 0, W, H);
+    for (const s of twinklers) dot(sctx, s, reduce ? s.a : (s.a * (.55 + .45 * Math.sin(t * .001 * s.tw + s.ph))).toFixed(3));
+    if (dt) drawMeteors(dt);
+  }
+  function skyLoop(t) {
+    requestAnimationFrame(skyLoop);
+    // twinkling is fine at ~30 fps; a passing meteor gets every frame
+    if (!meteors.length && t - lastFrame < 32) return;
+    const dt = lastFrame ? Math.min(.05, (t - lastFrame) / 1000) : 0;
+    lastFrame = t;
+    if (t > nextMeteor) { spawnMeteor(); nextMeteor = t + rand(5000, 12000); }
+    drawSky(t, dt);
+  }
+  makeStars();
+  sizeSky();
+  if (reduce) {
+    drawSky(0, 0);
+    addEventListener('resize', () => { if (sizeSky()) drawSky(0, 0); });
+  } else {
+    addEventListener('resize', sizeSky);
+    requestAnimationFrame(skyLoop);
+  }
+
+  /* ── Entrances: headings arrive word by word, blocks rise in sequence ── */
+  const splitWords = el => {
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(part); return; }
+          const w = document.createElement('span');
+          w.className = 'wi';
+          w.textContent = part;
+          frag.append(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) walk(n);
+    });
+    walk(el);
+    $$('.wi', el).forEach((w, i) => w.style.setProperty('--i', i));
+    el.setAttribute('data-split', '');
+  };
+  const heads = $$('main .h2, .c-head .display');
+  heads.forEach(splitWords);
+
+  const REVEAL = '.topic, .sec-head .lede, .head-split .lede, .p-intro, .split .prose, .tree, .symp, .facts, .kiosk-wrap, .vb > .vt, .mrow > *, .pb > *, .faq-cta, .faq, .c-head .lede, .c-grid';
+  const blocks = $$(REVEAL).filter(el => !el.closest('.hero'));
+  blocks.forEach(el => {
+    el.setAttribute('data-reveal', '');
+    const group = el.parentElement.matches('.vb, .mrow, .pb') ? [...el.parentElement.children] : null;
+    const delay = group ? group.indexOf(el) * .09 : el.matches('.lede, .prose, .p-intro') ? .16 : 0;
+    if (delay) el.style.setProperty('--rd', delay.toFixed(2) + 's');
+  });
+  const seams = $$('.sec.ruled');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add(e.target.matches('.sec') ? 'seam' : 'in');
+      io.unobserve(e.target);
+    }), { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    [...blocks, ...heads, ...seams].forEach(el => io.observe(el));
+  } else {
+    [...blocks, ...heads].forEach(el => el.classList.add('in'));
+    seams.forEach(el => el.classList.add('seam'));
+  }
+
+  /* ── Founder facts: digits roll into place like a counter ─────────── */
+  $$('.facts dd').forEach((dd, k) => {
+    const v = dd.textContent.trim();
+    if (!/^\d+$/.test(v)) return;
+    const strip = '01234567890123456789'.split('').map(x => `<i>${x}</i>`).join('');
+    const digits = [...v].map((d, j) =>
+      `<span class="roll"><span class="col" style="--n:${+d + 10};--dl:${(.15 + k * .12 + j * .08).toFixed(2)}s">${strip}</span></span>`).join('');
+    dd.innerHTML = `<span class="sr">${v}</span><span class="odo" aria-hidden="true">${digits}</span>`;
+  });
+
+  /* ── Navigation: marker under the current section, reading progress ── */
+  const navInd = $('.nav-ind');
+  const spyLinks = $$('.nav-links a[href^="#"]').map(a => [a, $(a.getAttribute('href'))]).filter(([, s]) => s);
+  function spy() {
+    const line = innerHeight * .38;
+    let cur = null;
+    for (const [a, s] of spyLinks) {
+      const r = s.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) cur = a;
+    }
+    spyLinks.forEach(([a]) => a.classList.toggle('is-active', a === cur));
+    if (cur) {
+      navInd.style.width = cur.offsetWidth + 'px';
+      navInd.style.transform = `translateX(${cur.offsetLeft}px)`;
+      navInd.style.opacity = 1;
+    } else navInd.style.opacity = 0;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    hd.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0);
+  }
+  $('.nav').addEventListener('transitionend', e => { if (e.target.matches('.nav')) spy(); });
+
+  /* ── Request form: finished steps get a tick ──────────────────────── */
+  const steps = $$('#compose .step');
+  const syncSteps = () => steps.forEach(st => st.classList.toggle('done',
+    [...st.querySelectorAll('textarea')].some(t => t.value.trim() !== '') || !!st.querySelector('input:checked')));
+  $('#compose').addEventListener('input', syncSteps);
+  $('#compose').addEventListener('change', syncSteps);
+
+  /* ── Footer: local time where the team sits ───────────────────────── */
+  const berlin = new Intl.DateTimeFormat('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' });
+  const ftTime = $('#ftTime');
+  const tickFt = () => { ftTime.textContent = berlin.format(new Date()); };
+  tickFt();
+  setInterval(tickFt, 30000);
+  $('#ftClock').hidden = false;
+
+  /* ── Lightbox ─────────────────────────────────────────────────────── */
+  const lb = $('#lb'), lbi = $('#lbi');
+  $$('[data-zoom]').forEach(b => b.addEventListener('click', () => {
+    const img = $('img', b);
+    lbi.src = img.currentSrc || img.src;
+    lbi.alt = img.alt;
+    lb.showModal();
+  }));
+  $('#lbx').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+
+  /* ── Copy e-mail ──────────────────────────────────────────────────── */
+  const MAIL = 'kontakt@erp-bayern.de';
+  $('#cpy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(MAIL);
+    } catch {
+      const t = document.createElement('textarea');
+      t.value = MAIL;
+      t.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(t);
+      t.select();
+      const ok = document.execCommand('copy');
+      t.remove();
+      if (!ok) return say('Kopieren nicht möglich. Bitte die Adresse markieren.');
+    }
+    say('E-Mail-Adresse kopiert');
+  });
+
+  /* ── Request composer: builds a mailto draft, nothing is sent from here ── */
+  $('#compose').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const v = k => (f.get(k) || '').toString().trim();
+    const body = [
+      'Hallo Turbo Solutions,', '',
+      'So läuft es heute:', v('ablauf') || '(bitte ergänzen)', '',
+      'Odoo-Version: ' + (v('version') || 'keine Angabe'), '',
+      'Das soll am Ende herauskommen:', v('ziel') || '(bitte ergänzen)', '',
+      'Viele Grüße',
+    ].join('\r\n');
+    location.href = `mailto:${MAIL}?subject=${encodeURIComponent('Projektanfrage')}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
+</body>
+</html>
